@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9B209051-FE88-409C-98A3-09D132FC7D45}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>PolicalSimulatorGUI</RootNamespace>
-    <AssemblyName>PolicalSimulatorGUI</AssemblyName>
+    <RootNamespace>PoliticalSimulatorGUI</RootNamespace>
+    <AssemblyName>PoliticalSimulatorGUI</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

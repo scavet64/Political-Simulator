@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PolicalSimulatorGUI
+namespace PoliticalSimulatorGUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
