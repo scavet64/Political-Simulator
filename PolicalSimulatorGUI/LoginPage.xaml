@@ -1,0 +1,24 @@
+﻿<Page x:Class="PoliticalSimulatorGUI.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PoliticalSimulatorGUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="LoginPage"
+      Background="White">
+
+    <Border>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label>
+                Please enter your profile name
+            </Label>
+            <TextBox Margin="4" />
+            <StackPanel Margin="50, 10">
+                <Button Margin="0,5,0,2.5">Login</Button>
+                <Button Margin="0,2.5,0,5">Create Profile</Button>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Page>

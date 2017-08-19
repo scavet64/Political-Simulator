@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PoliticalSimulatorGUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <Border>
+        <Frame x:Name="MainFrame" />
+    </Border>
 </Window>

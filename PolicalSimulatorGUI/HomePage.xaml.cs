@@ -16,17 +16,13 @@ using System.Windows.Shapes;
 namespace PoliticalSimulatorGUI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HomePage : Page
     {
-
-        private LoginPage loginPage = new LoginPage();
-
-        public MainWindow()
+        public HomePage()
         {
             InitializeComponent();
-            MainFrame.Content = loginPage;
         }
     }
 }
