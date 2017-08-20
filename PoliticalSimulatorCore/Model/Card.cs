@@ -25,7 +25,7 @@ namespace PoliticalSimulatorCore.Model
         /// Gets the fatigue value.
         /// </summary>
         /// <value>The fatigue value.</value>
-        public int FatigueValue
+        public int PlayFatigueValue
         {
             get;
             private set;
@@ -59,8 +59,8 @@ namespace PoliticalSimulatorCore.Model
         /// <param name="imgFilePath">Image file path.</param>
         public Card(String name, int fatigueValue, String imgFilePath)
         {
-            this.name = name;
-            this.FatigueValue = fatigueValue;
+            this.Name = name;
+            this.PlayFatigueValue = fatigueValue;
             this.ImageFilePath = imgFilePath;
 
             //TODO Have a way for this to be a user choice
@@ -83,7 +83,7 @@ namespace PoliticalSimulatorCore.Model
         {
             if (obj is Card cardToCheck)
             {
-                if (cardToCheck.getName().Equals(name) && cardToCheck.getPlayFatigueValue() == playFatigueValue)
+                if (cardToCheck.Name.Equals(Name) && cardToCheck.PlayFatigueValue == PlayFatigueValue)
                 {
                     return true;
                 }

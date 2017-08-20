@@ -17,41 +17,52 @@ namespace PoliticalSimulatorCore.Model
         private String statToModify;
         private int modValue;
 
-        /**
-         * Default constructor for Enhancement
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.Enhancement"/> class.
+        /// </summary>
+        /// <param name="name">Name.</param>
+        /// <param name="fatigueValue">Fatigue value.</param>
+        /// <param name="stat">Stat.</param>
+        /// <param name="modValue">Mod value.</param>
+        /// <param name="imgFilePath">Image file path.</param>
         public Enhancement(String name, int fatigueValue, String stat, int modValue, String imgFilePath) : base (name, fatigueValue, imgFilePath)
         {
             this.statToModify = stat;
             this.modValue = modValue;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.Enhancement"/> class.
+        /// </summary>
         public Enhancement()
         {
 
         }
 
-        /**
-         * Deep copy constructor for Enhancement
-         */
-        public Enhancement(Enhancement c): base(c.getName(), c.getPlayFatigueValue(), c.getImgFilePath())
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.Enhancement"/> class.
+        /// </summary>
+        /// <param name="c">C.</param>
+        public Enhancement(Enhancement c): base(c.Name, c.PlayFatigueValue, c.ImageFilePath)
         {
             this.statToModify = c.getStat();
             this.modValue = c.getModValue();
             // TODO Auto-generated constructor stub
         }
 
-        /**
-         * @return statToModify
-         */
+        /// <summary>
+        /// Gets the stat.
+        /// </summary>
+        /// <returns>The stat.</returns>
         public String getStat()
         {
             return statToModify;
         }
 
-        /**
-         * @return modValue
-         */
+        /// <summary>
+        /// Gets the mod value.
+        /// </summary>
+        /// <returns>The mod value.</returns>
         public int getModValue()
         {
             return modValue;

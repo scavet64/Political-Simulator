@@ -10,39 +10,38 @@ namespace PoliticalSimulatorCore.Model
 {
     public class Deck
     {
+        //Constants
         private const long serialVersionUID = 1L;
         private const int DECK_LIMIT = 30;
         private const int MAX_NUMBER_OF_CARD_IN_DECK = 2;
+
+        //Variables
         private List<Card> cardList = new List<Card>();
         private String name;
         private static Random rng = new Random();
         //	private Stack<Card> deck = new Stack<Card>();
 
-        /**
-         * default constructor for the Deck class
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.Deck"/> class.
+        /// </summary>
         public Deck()
         {
         }
 
-        /**
-         * constructor that takes the deck's name
-         * @param name
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.Deck"/> class.
+        /// </summary>
+        /// <param name="name">Name.</param>
         public Deck(String name)
         {
         }
 
-
-        ///////Deck Modifying Methods///////
-
-        /**
-         * Adds a card to the deck only if the deck has not reached its limit and there arent two of the same card in the deck.
-         * @param cardToAdd the card to add
-         * @return String containing message
-         * @throws DeckFullException
-         */
-        public String addCard(Card cardToAdd)
+		/// <summary>
+		/// Adds a card to the deck only if the deck has not reached its limit and there arent two of the same card in the deck.
+		/// </summary>
+		/// <returns>The card.</returns>
+		/// <param name="cardToAdd">Card to add.</param>
+		public String addCard(Card cardToAdd)
         {
             if (getSize() >= DECK_LIMIT)
             {
@@ -52,14 +51,14 @@ namespace PoliticalSimulatorCore.Model
             else if (cardList.Count == 0)
             {
                 cardList.Add(cardToAdd);
-                return cardToAdd.getName() + " was added to the deck.";
+                return cardToAdd.Name + " was added to the deck.";
             }
             else
             {
                 if (getNumberOfCardInDeck(cardToAdd) < MAX_NUMBER_OF_CARD_IN_DECK)
                 {
                     cardList.Add(cardToAdd);
-                    return cardToAdd.getName() + " was added to the deck.";
+                    return cardToAdd.Name + " was added to the deck.";
                 }
                 else
                 {
@@ -68,10 +67,11 @@ namespace PoliticalSimulatorCore.Model
             }
         }
 
-        /**
-         * @param cardToCheck the card that you want to check
-         * @return the number of that card in the deck
-         */
+        /// <summary>
+        /// Gets the number of card in deck.
+        /// </summary>
+        /// <returns>The number of card in deck.</returns>
+        /// <param name="cardToCheck">Card to check.</param>
         public int getNumberOfCardInDeck(Card cardToCheck)
         {
             int counter = 0;
@@ -85,24 +85,25 @@ namespace PoliticalSimulatorCore.Model
             return counter;
         }
 
-        /**
-         * Remove a specified card from the deck
-         * @param card Card to remove
-         * @return Removal message
-         */
+        /// <summary>
+        /// Removes the card.
+        /// </summary>
+        /// <returns>The card.</returns>
+        /// <param name="card">Card.</param>
         public String removeCard(Card card)
         {
             if (cardList.Contains(card))
             {
                 cardList.Remove(card);
-                return card.getName() + " was removed from the deck.";
+                return card.Name + " was removed from the deck.";
             }
             else
             {
-                return card.getName() + " is not in the deck.";
+                return card.Name + " is not in the deck.";
             }
         }
 
+        ///Commented this code out because it doesnt convert well into c# and im not sure why we would every use it.
         ///**
         // * Swap a specified card for another card in the deck
         // * @param card Card to add to deck
@@ -124,26 +125,28 @@ namespace PoliticalSimulatorCore.Model
         //    }
         //}
 
-        /**
-         * @return How many cards are left in the deck
-         */
+        /// <summary>
+        /// Gets the cards left string.
+        /// </summary>
+        /// <returns>The cards left string.</returns>
         public String getCardsLeftString()
         {
             return cardList.Count + "/" + DECK_LIMIT + " Cards Left in Deck";
         }
 
-        /**
-         * @return the size of the deck
-         */
+        /// <summary>
+        /// Gets the size.
+        /// </summary>
+        /// <returns>The size.</returns>
         public int getSize()
         {
             return cardList.Count;
         }
 
-        /**
-         * Returns the top card of the deck and removes from the list
-         * @return the top card
-         */
+        /// <summary>
+        /// Gets the top card.
+        /// </summary>
+        /// <returns>The top card.</returns>
         public Card getTopCard()
         {
             Card tmp = cardList.First();
@@ -151,65 +154,68 @@ namespace PoliticalSimulatorCore.Model
             return tmp;
         }
 
-        /**
-         * Randomizes the order of Cards in the deck.
-         * 
-         * Turns out a lot harder in C#
-         */
+        /// <summary>
+        /// Shuffle this instance.
+        /// </summary>
         public void shuffle()
         {
             cardList.Shuffle();
         }
 
-
-        /**
-         * @return The maximum number of decks available
-         */
+        /// <summary>
+        /// Gets the limit.
+        /// </summary>
+        /// <returns>The limit.</returns>
         public static int getLimit()
         {
             return DECK_LIMIT;
         }
 
-        /**
-         * @return All cards owned
-         */
+        /// <summary>
+        /// Gets the strings of cards.
+        /// </summary>
+        /// <returns>The strings of cards.</returns>
         public List<String> getStringsOfCards()
         {
             List<String> stringsOfCardsOwned = new List<String>();
             foreach (Card card in cardList)
             {
-                stringsOfCardsOwned.Add(card.getName());
+                stringsOfCardsOwned.Add(card.Name);
             }
             return stringsOfCardsOwned;
         }
 
-        /**
-         * @return Max number of Cards in a Deck
-         */
+        /// <summary>
+        /// Gets the max number of card in deck.
+        /// </summary>
+        /// <returns>The max number of card in deck.</returns>
         public int getMAX_NUMBER_OF_CARD_IN_DECK()
         {
             return MAX_NUMBER_OF_CARD_IN_DECK;
         }
 
-        /**
-         * @return the name of the Deck
-         */
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <returns>The name.</returns>
         public String getName()
         {
             return name;
         }
 
-        /**
-         * @param name The name to set to the Deck
-         */
+        /// <summary>
+        /// Sets the name of the deck
+        /// </summary>
+        /// <param name="name">Name.</param>
         public void setName(String name)
         {
             this.name = name;
         }
 
-        /**
-         * @return true if the deck is full, false if not
-         */
+        /// <summary>
+        /// Checks to see if the deck is full.
+        /// </summary>
+        /// <returns><c>true</c>, if the deck is full, <c>false</c> otherwise.</returns>
         public bool isFull()
         {
             if (cardList.Count == DECK_LIMIT)
@@ -219,15 +225,19 @@ namespace PoliticalSimulatorCore.Model
             return false;
         }
 
-        /**
-         * @param cardList List of cards to set to the deck
-         */
+        /// <summary>
+        /// Sets the card list.
+        /// </summary>
+        /// <param name="cardList">Card list.</param>
         public void setCardList(List<Card> cardList)
         {
             this.cardList = cardList;
         }
     }
 
+    /// <summary>
+    /// Thread safe random.
+    /// </summary>
     public static class ThreadSafeRandom
     {
         [ThreadStatic] private static Random Local;
@@ -238,8 +248,17 @@ namespace PoliticalSimulatorCore.Model
         }
     }
 
+    /// <summary>
+    /// My extensions.
+    /// </summary>
     static class MyExtensions
     {
+        /// <summary>
+        /// Shuffle the specified list.
+        /// </summary>
+        /// <returns>The shuffle.</returns>
+        /// <param name="list">List.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
         public static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;

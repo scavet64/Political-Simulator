@@ -8,13 +8,114 @@ namespace PoliticalSimulatorCore.Model
 {
     public class Creature : Card
     {
+
+#region(Properties)
+
         private const long serialVersionUID = 1L;
         private int attackValue;
         private int healthValue;
         private int attackFatigueValue;
         private int chanceToHit;
-        private Type type;
+        private Type creatureType;
         private String fieldImgPath;
+
+        /// <summary>
+        /// Gets or sets the attack value.
+        /// </summary>
+        /// <value>The attack value.</value>
+        public int AttackValue
+        {
+            get
+            {
+                return attackValue;
+            }
+            set
+            {
+                attackValue = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the health value.
+        /// </summary>
+        /// <value>The health value.</value>
+		public int HealthValue
+		{
+			get
+			{
+                return healthValue;
+			}
+			set
+			{
+                healthValue = value;
+			}
+		}
+
+        /// <summary>
+        /// Gets or sets the attack fatigue value.
+        /// </summary>
+        /// <value>The attack fatigue value.</value>
+		public int AttackFatigueValue
+		{
+			get
+			{
+                return attackFatigueValue;
+			}
+			set
+			{
+				attackFatigueValue = value;
+			}
+		}
+
+        /// <summary>
+        /// Gets or sets the chance to hit.
+        /// </summary>
+        /// <value>The chance to hit.</value>
+		public int ChanceToHit
+		{
+			get
+			{
+                return chanceToHit;
+			}
+			set
+			{
+                chanceToHit = value;
+			}
+		}
+
+        /// <summary>
+        /// Gets or sets the type of the creature.
+        /// </summary>
+        /// <value>The type of the creature.</value>
+		public Type CreatureType
+		{
+			get
+			{
+				return creatureType;
+			}
+			set
+			{
+				creatureType = value;
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the type of the creature.
+		/// </summary>
+		/// <value>The type of the creature.</value>
+		public string FieldImgPath
+		{
+			get
+			{
+				return fieldImgPath;
+			}
+			set
+			{
+				fieldImgPath = value;
+			}
+		}
+
+#endregion
 
         /**
          * default original creature constructor
@@ -35,156 +136,42 @@ namespace PoliticalSimulatorCore.Model
             this.attackFatigueValue = attackFatigueValue;
             this.attackValue = attack;
             this.healthValue = health;
-            this.type = type;
+            this.creatureType = type;
             this.chanceToHit = chanceToHit;
             this.fieldImgPath = fieldImgPath;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.Creature"/> class.
+        /// </summary>
         public Creature() {}
 
+        /// <summary>
+        /// Calculates the attack fatigue.
+        /// </summary>
+        /// <param name="fatigueValue">Fatigue value.</param>
         private void calcAttackFatigue(int fatigueValue)
         {
 
         }
 
-        /**
-         * Constructor that takes a creature. This is used to create copies of the card
-         * @param c creature to be copied
-         */
-        public Creature(Creature c): base (c.getName(), c.getPlayFatigueValue(), c.getImgFilePath())
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.Creature"/> class.
+        /// </summary>
+        /// <param name="c">C.</param>
+        public Creature(Creature c): base (c.Name, c.FatigueValue, c.ImageFilePath)
         {
-            this.attackValue = c.getAttackValue();
-            this.attackFatigueValue = c.getAttackFatigueValue();
-            this.healthValue = c.getHealthValue();
-            this.type = c.getType();
-            this.chanceToHit = c.getChanceToHit();
-            this.fieldImgPath = c.getFieldImgPath();
+            this.attackValue = c.attackValue;
+            this.attackFatigueValue = c.attackFatigueValue;
+            this.healthValue = c.healthValue;
+            this.creatureType = c.CreatureType;
+            this.chanceToHit = c.ChanceToHit;
+            this.fieldImgPath = c.FieldImgPath;
         }
 
         public String getFieldImgPath()
         {
             return fieldImgPath;
         }
-
-        ///**
-        // * reduces the field image by the reduction percent provided. Uses the getScaledInstance within the Image class.
-        // * @param reducePercent how reduced
-        // * @return the reduced image
-        // */
-        //public Image getReducedFieldImageSize(double reducePercent)
-        //{
-        //    Image fieldImage = getFieldImage();
-        //    int imgHight = fieldImage.getHeight(null);
-        //    int imgWidth = fieldImage.getWidth(null);
-
-        //    Double reducedHightDouble = (imgHight * reducePercent);
-        //    Double reducedWidthDouble = (imgWidth * reducePercent);
-
-        //    int reducedHightAsInt = reducedHightDouble.intValue();
-        //    int reducedWidthAsInt = reducedWidthDouble.intValue();
-
-        //    return fieldImage.getScaledInstance(reducedWidthAsInt, reducedHightAsInt, 0);
-        //}
-
-
-        ////Setters and Getters \\\\\
-
-        ///**
-        // * Reads and creates an Image object that represents the fieldImgPath
-        // * @return the Image object created
-        // * @throws ImageNotFoundException
-        // */
-        //public Image getFieldImage()
-        //{
-        //    try
-        //    {
-        //        return ImageIO.read(new File(fieldImgPath));
-        //    }
-        //    catch (IOException e)
-        //    {
-        //        throw new ImageNotFoundException(fieldImgPath, LocalDateTime.now());
-        //    }
-        //}
-
-        /**
-         * @return the attackValue
-         */
-        public int getAttackValue()
-        {
-            return attackValue;
-        }
-
-        /**
-         * @param attackValue the attackValue to set
-         */
-        public void setAttackValue(int attackValue)
-        {
-            if (attackValue < 0) attackValue = 0;
-            this.attackValue = attackValue;
-        }
-
-        /**
-         * @return the healthValue
-         */
-        public int getHealthValue()
-        {
-            return healthValue;
-        }
-
-        /**
-         * @param healthValue the healthValue to set
-         */
-        public void setHealthValue(int healthValue)
-        {
-            this.healthValue = healthValue;
-        }
-
-        /**
-         * @return the attackFatigueValue
-         */
-        public int getAttackFatigueValue()
-        {
-            return attackFatigueValue;
-        }
-
-        /**
-         * @param attackFatigueValue the attackFatigueValue to set
-         */
-        public void setAttackFatigueValue(int attackFatigueValue)
-        {
-            if (attackFatigueValue < 1) attackFatigueValue = 1;
-            this.attackFatigueValue = attackFatigueValue;
-        }
-
-        /**
-         * @return the chanceToHit
-         */
-        public int getChanceToHit()
-        {
-            return chanceToHit;
-        }
-
-        /**
-         * @param chanceToHit the chanceToHit to set
-         */
-        public void setChanceToHit(int chanceToHit)
-        {
-            this.chanceToHit = chanceToHit;
-        }
-
-        /**
-         * @return the type
-         */
-        public Type getType()
-        {
-            return type;
-        }
-
-        //	/**
-        //	 * @param type the type to set
-        //	 */
-        //	public void setType(Type type) {
-        //		this.type = type;
-        //	}
     }
 }
