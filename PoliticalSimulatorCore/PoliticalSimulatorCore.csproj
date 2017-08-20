@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="CustomExceptions\DeckFullException.cs" />
+    <Compile Include="CustomExceptions\ImageNotFoundException.cs" />
+    <Compile Include="CustomExceptions\ProfileNotFoundException.cs" />
+    <Compile Include="Model\AllCards.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\Creature.cs" />
     <Compile Include="Model\Deck.cs" />
@@ -54,8 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AI\" />
-    <Folder Include="Controller\" />
-    <Folder Include="CustomExceptions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

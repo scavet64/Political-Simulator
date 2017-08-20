@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PoliticalSimulatorCore.Model
+namespace PoliticalSimulatorCore.CustomExceptions
 {
-    public interface IEnhanceable
+    class DeckFullException: Exception
     {
     }
 }

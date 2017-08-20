@@ -107,5 +107,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PoliticalSimulatorCore\PoliticalSimulatorCore.csproj">
+      <Project>{506966ad-799d-4320-995f-4060e10f9c0a}</Project>
+      <Name>PoliticalSimulatorCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

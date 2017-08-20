@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model
 {
-    class UserProfile
+    //TODO: make this an XML class maybe
+    public class UserProfile
     {
         private const long serialVersionUID = 1L;
         private String name;
@@ -19,6 +20,7 @@ namespace PoliticalSimulatorCore.Model
         private List<Pack> packs;
         private List<Card> collectedCards;
         private String playerImagePath;
+
 
         //	maybe one day
         //	private ArrayList <Deck> decks = new ArrayList<Deck>();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model
 {
-    class Creature : Card
+    public class Creature : Card
     {
         private const long serialVersionUID = 1L;
         private int attackValue;

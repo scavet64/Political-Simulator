@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model
 {
-    class Pack
+    public class Pack
     {
-        private static final long serialVersionUID = 1L;
-        private ArrayList<Card> cardsInPack;
-        private final int MAX_CARDS_IN_PACK = 5;
+        private const long serialVersionUID = 1L;
+        private List<Card> cardsInPack;
+        private const int MAX_CARDS_IN_PACK = 5;
         private Random rng;
 
         public Pack()
         {
-            cardsInPack = new ArrayList<Card>(MAX_CARDS_IN_PACK);
+            cardsInPack = new List<Card>(MAX_CARDS_IN_PACK);
             populatePack();
         }
 
@@ -24,24 +24,23 @@ namespace PoliticalSimulatorCore.Model
          */
         private void populatePack()
         {
-            ArrayList<Card> allCards = AllCards.getInstance().getAllCards();
-            @SuppressWarnings("static-access")
+            List<Card> allCards = AllCards.getInstance().GetAllCards();
     
-        ArrayList<Card> rareCards = AllCards.getInstance().getRareCardsList();
+            List<Card> rareCards = AllCards.getInstance().GetRareCardsList();
             rng = new Random();
             int i = 0;
             while (i < (MAX_CARDS_IN_PACK - 1))
             {
                 //first round of randomization
-                Card cardToAdd = allCards.get(rng.nextInt(allCards.size()));
-                if (cardToAdd instanceof RareCreature){
-                    if (rng.nextInt(100) >= 40)
+                Card cardToAdd = allCards[(rng.Next(allCards.Count))];
+                if (cardToAdd is RareCreature){
+                    if (rng.Next(100) >= 40)
                     {
-                        cardsInPack.add(cardToAdd);
+                        cardsInPack.Add(cardToAdd);
                         i++;
                     }
                 }else{
-                    cardsInPack.add(cardToAdd);
+                    cardsInPack.Add(cardToAdd);
                     i++;
                 }
             }
@@ -52,13 +51,13 @@ namespace PoliticalSimulatorCore.Model
             //			cardsInPack.add(allCards.get(rng.nextInt(allCards.size())));
             //		}
             //always have at least 1 rare card in pack
-            cardsInPack.add(rareCards.get(rng.nextInt(rareCards.size())));
+            cardsInPack.Add(rareCards[(rng.Next(rareCards.Count))]);
         }
 
         /**
          * @return the cardsInPack
          */
-        public ArrayList<Card> getCardsInPack()
+        public List<Card> getCardsInPack()
         {
             return cardsInPack;
         }
@@ -66,7 +65,7 @@ namespace PoliticalSimulatorCore.Model
         /**
          * @param cardsInPack the cardsInPack to set
          */
-        public void setCardsInPack(ArrayList<Card> cardsInPack)
+        public void setCardsInPack(List<Card> cardsInPack)
         {
             this.cardsInPack = cardsInPack;
         }

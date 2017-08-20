@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model
 {
-    class Enhancement: Card
+    public class Enhancement: Card
     {
         public const String HEALTH = "health";
         public const String CHANCE_TO_ATTACK = "chance to hit";
