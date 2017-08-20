@@ -11,9 +11,9 @@ namespace PoliticalSimulatorCore.Model
         private static AllCards instance;
         private List<Card> allCards = new List<Card>();
 
-        /**
-         * Creation of all cards in the game
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.AllCards"/> class.
+        /// </summary>
         private AllCards()
         {
             //initialize all cards here		
@@ -139,9 +139,10 @@ namespace PoliticalSimulatorCore.Model
             allCards.Add(new Enhancement("Energy Sword", 0, Enhancement.ATTACK, 1, "Enhancement images//Esword.png"));
         }
 
-        /**
-         * @Returns instance
-         */
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <returns>The instance.</returns>
         public static AllCards getInstance()
         {
             if (instance == null)
@@ -151,19 +152,20 @@ namespace PoliticalSimulatorCore.Model
             return instance;
         }
 
-        /**
-         * @return allCards
-         */
+        /// <summary>
+        /// Gets all cards.
+        /// </summary>
+        /// <returns>The all cards.</returns>
         public List<Card> GetAllCards()
         {
             return allCards;
         }
 
-        /**
-         *@param name the name of the card to look for
-         *@return card the card if the name matches a card in allCards
-         *@return null if card not found 
-         */
+        /// <summary>
+        /// Gets the name of the card from.
+        /// </summary>
+        /// <returns>The card from name.</returns>
+        /// <param name="name">Name.</param>
         public Card GetCardFromName(String name)
         {
             foreach (Card card in allCards)
@@ -176,9 +178,10 @@ namespace PoliticalSimulatorCore.Model
             return null;
         }
 
-        /**
-         * @return rareCards a collection of cards that are marked as rare
-         */
+        /// <summary>
+        /// Gets the rare cards list.
+        /// </summary>
+        /// <returns>The rare cards list.</returns>
         public List<Card> GetRareCardsList()
         {
             List<Card> rareCards = new List<Card>();
