@@ -18,19 +18,50 @@ namespace PoliticalSimulatorCore.Model
         private const String NOT_VERY_EFFECTIVE_STRING = "Attack was not very effective\n";
 
         protected enum TypeEnum { Fighter, Psycho, Magic, Genius, Charasmatic, Spooky, Forbidden, none }
+
+        /// <summary>
+        /// The fighter.
+        /// </summary>
         public readonly static Type FIGHTER = new Type(TypeEnum.Fighter, TypeEnum.Genius, TypeEnum.Charasmatic);
+        /// <summary>
+        /// The psycho.
+        /// </summary>
         public readonly static Type PSYCHO = new Type(TypeEnum.Psycho, TypeEnum.Spooky, TypeEnum.Magic);
+        /// <summary>
+        /// The magic.
+        /// </summary>
         public readonly static Type MAGIC = new Type(TypeEnum.Magic, TypeEnum.Psycho, TypeEnum.Genius);
+        /// <summary>
+        /// The genius.
+        /// </summary>
         public readonly static Type GENIUS = new Type(TypeEnum.Genius, TypeEnum.Magic, TypeEnum.Fighter);
+        /// <summary>
+        /// The charasmatic.
+        /// </summary>
         public readonly static Type CHARASMATIC = new Type(TypeEnum.Charasmatic, TypeEnum.Fighter, TypeEnum.Psycho);
+        /// <summary>
+        /// The spooky.
+        /// </summary>
         public readonly static Type SPOOKY = new Type(TypeEnum.Spooky, TypeEnum.Charasmatic, TypeEnum.Psycho);
+        /// <summary>
+        /// The forbidden.
+        /// </summary>
         public readonly static Type FORBIDDEN = new Type(TypeEnum.Forbidden, TypeEnum.none, TypeEnum.none);
 
         private TypeEnum highlyEffective;
         private TypeEnum notVeryEffective;
+        /// <summary>
+        /// Gets the singleton instance.
+        /// </summary>
+        /// <value>The self.</value>
         protected TypeEnum Self { get; private set; }
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.Type"/> class.
+        /// </summary>
+        /// <param name="self">Self.</param>
+        /// <param name="highlyEffective">Highly effective.</param>
+        /// <param name="notVeryEffective">Not very effective.</param>
         private Type(TypeEnum self, TypeEnum highlyEffective, TypeEnum notVeryEffective)
         {
             this.Self = self;
@@ -38,10 +69,11 @@ namespace PoliticalSimulatorCore.Model
             this.notVeryEffective = notVeryEffective;
         }
 
-        /**
-         * @param typeToCompare type to check for changes from other types
-         * @return int value for attack change due to types
-         */
+        /// <summary>
+        /// Applies the modifier.
+        /// </summary>
+        /// <returns>The modifier.</returns>
+        /// <param name="typeToCompare">Type to compare.</param>
         public int applyModifier(Type typeToCompare)
         {
             TypeEnum opposingType = typeToCompare.Self;
@@ -59,9 +91,11 @@ namespace PoliticalSimulatorCore.Model
             }
         }
 
-        /**
-         * @param typeToCompare Type to be checked for bonus effects on damage exchange
-         */
+        /// <summary>
+        /// Modifiers the string.
+        /// </summary>
+        /// <returns>The string.</returns>
+        /// <param name="typeToCompare">Type to compare.</param>
         public String modifierString(Type typeToCompare)
         {
             String opposingType = typeToCompare.ToString();
@@ -79,7 +113,12 @@ namespace PoliticalSimulatorCore.Model
             }
         }
 
-        // override object.Equals
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:PoliticalSimulatorCore.Model.Type"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:PoliticalSimulatorCore.Model.Type"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="T:PoliticalSimulatorCore.Model.Type"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -92,7 +131,11 @@ namespace PoliticalSimulatorCore.Model
             return compareType.Self == Self;
         }
 
-        // override object.GetHashCode
+        /// <summary>
+        /// Serves as a hash function for a <see cref="T:PoliticalSimulatorCore.Model.Type"/> object.
+        /// </summary>
+        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
+        /// hash table.</returns>
         public override int GetHashCode()
         {
             return Self.GetHashCode();

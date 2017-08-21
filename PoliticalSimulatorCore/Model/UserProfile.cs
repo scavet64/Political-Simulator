@@ -27,10 +27,10 @@ namespace PoliticalSimulatorCore.Model
         //	private final int MAX_NUMBER_OF_DECKS = 9;
 
 
-        /**
-         * Constructor for UserProfile
-         * @Param name the name for the profile to be recognized by
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.UserProfile"/> class.
+        /// </summary>
+        /// <param name="name">Name.</param>
         public UserProfile(String name)
         {
             this.name = name;
@@ -42,6 +42,9 @@ namespace PoliticalSimulatorCore.Model
             setFirstLoad(true);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.UserProfile"/> class.
+        /// </summary>
         public UserProfile()
         {
 
