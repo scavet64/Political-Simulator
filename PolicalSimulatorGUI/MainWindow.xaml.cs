@@ -20,6 +20,7 @@ namespace PoliticalSimulatorGUI
         public MainWindow()
         {
             instance = this;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             FrameworkElement.StyleProperty.OverrideMetadata(typeof(Window), new FrameworkPropertyMetadata
             {
