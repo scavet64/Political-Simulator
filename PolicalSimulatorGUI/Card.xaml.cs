@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoliticalSimulatorCore.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,18 @@ namespace PoliticalSimulatorGUI
     /// <summary>
     /// Interaction logic for Card.xaml
     /// </summary>
-    public partial class Card : UserControl
+    public partial class CardUIControl : UserControl
     {
+
+        private Card card;
+
+        public Card Card
+        {
+            get { return card; }
+            set { card = value; }
+        }
+
+
         private string source;
 
         public string Source
@@ -28,7 +39,7 @@ namespace PoliticalSimulatorGUI
             set { source = value; }
         }
 
-        public Card(string ImageSource)
+        public CardUIControl(string ImageSource)
         {
             this.Source = ImageSource;
             InitializeComponent();
@@ -39,11 +50,12 @@ namespace PoliticalSimulatorGUI
         {
             DataObject data = new DataObject();
             data.SetData("object", this);
+            data.SetData("ParentElement", this.Parent);
             DragDropEffects effects = DragDrop.DoDragDrop(this, data, DragDropEffects.Move);
             if(effects == DragDropEffects.Move)
             {
                 //There has to be a better way to do this
-                GamePage.bottomStack.Remove(this);
+                //GamePage.bottomStack.Remove(this);
             }
         }
     }
