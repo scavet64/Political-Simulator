@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace PoliticalSimulatorCore.Model
 {
     //TODO: make this an XML class maybe
+    [Serializable]
     public class UserProfile
     {
         private const long serialVersionUID = 1L;

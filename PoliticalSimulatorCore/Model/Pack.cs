@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model
 {
+    [Serializable]
     public class Pack
     {
         public const int MAX_CARDS_IN_PACK = 5;

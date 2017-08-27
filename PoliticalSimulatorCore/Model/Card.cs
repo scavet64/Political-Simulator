@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model
 {
+    [Serializable]
     public class Card
     {
         private static long serialVersionUID = 1L;

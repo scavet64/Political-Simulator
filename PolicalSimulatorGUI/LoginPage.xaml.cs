@@ -1,7 +1,10 @@
-﻿using System;
+﻿using PoliticalSimulatorCore.Controller;
+using PoliticalSimulatorCore.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,13 +29,41 @@ namespace PoliticalSimulatorGUI
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LoginClick(object sender, RoutedEventArgs e)
         {
+            this.Dispatcher.Invoke(() =>
+            {
+                Login(ProfileNameBox.Text);
+            });
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void CreateProfileClick(object sender, RoutedEventArgs e)
         {
+            this.Dispatcher.Invoke(() =>
+            {
+                CreateProfile(ProfileNameBox.Text);
+            });
 
+        }
+
+        private void CreateProfile(string ProfileName)
+        {
+            LoginController.createProfile(ProfileName);
+            Login(ProfileName);
+        }
+
+        private static void Login(string ProfileToLoad)
+        {
+            UserProfile profile = LoginController.loadProfile(ProfileToLoad);
+            if(profile != null)
+            {
+                MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.HomePage, profile);
+            }
+        }
+
+        private bool ProfileExists()
+        {
+            throw new NotImplementedException();
         }
     }
 }

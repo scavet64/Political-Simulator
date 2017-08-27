@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="LoginPage"
-      Background="#03256C">
+      Background="#0A1128">
     <Page.Resources>
 
         
@@ -19,10 +19,10 @@
             <Label HorizontalAlignment="Center" Foreground="#FFFFFF">
                 Please enter your profile name
             </Label>
-            <TextBox Margin="4" Background="#2541B2" BorderThickness="0" Style="{DynamicResource TextBoxCustomStyle}"/>
+            <TextBox x:Name="ProfileNameBox" Margin="4" Background="#001F54" BorderThickness="0" Style="{DynamicResource TextBoxCustomStyle}"/>
             <StackPanel Margin="50, 10" Width="100">
-                <Button Margin="0,5,0,2.5" Click="Button_Click" Style="{DynamicResource CustomButtonStyle}">Login</Button>
-                <Button Margin="0,2.5,0,5" Click="Button_Click_1" Style="{DynamicResource CustomButtonStyle}" >Create Profile</Button>
+                <Button Margin="0,5,0,2.5" Click="LoginClick" Style="{DynamicResource CustomButtonStyle}">Login</Button>
+                <Button Margin="0,2.5,0,5" Click="CreateProfileClick" Style="{DynamicResource CustomButtonStyle}" >Create Profile</Button>
             </StackPanel>
         </StackPanel>
     </Border>

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Controller
 {
-    static class LoginController
+    public static class LoginController
     {
 
         public static UserProfile ActiveProfile { get; set; }
@@ -31,7 +31,7 @@ namespace PoliticalSimulatorCore.Controller
             try
             {
                 IFormatter formatter = new BinaryFormatter();
-                using (Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (Stream stream = new FileStream("Profiles\\" + profileToLoad + ".dat", FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     profile = (UserProfile)formatter.Deserialize(stream);
                 }

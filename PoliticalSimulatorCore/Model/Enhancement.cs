@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model
 {
+    [Serializable]
     public class Enhancement: Card
     {
         public const String HEALTH = "health";

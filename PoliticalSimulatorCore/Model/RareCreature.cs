@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model
 {
+    [Serializable]
     public class RareCreature: Creature
     {
         private const long serialVersionUID = 1L;

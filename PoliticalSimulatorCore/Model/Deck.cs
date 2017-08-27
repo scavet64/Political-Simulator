@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model
 {
+    [Serializable]
     public class Deck
     {
         //Constants

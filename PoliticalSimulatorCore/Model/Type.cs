@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model
 {
+    [Serializable]
     /// <summary>
     /// Type Class
     /// </summary>
