@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.CustomExceptions
 {
-    class DeckFullException: Exception
+    public class DeckFullException: Exception
     {
     }
 }

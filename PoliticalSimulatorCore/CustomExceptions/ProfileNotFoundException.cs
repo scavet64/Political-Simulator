@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.CustomExceptions
 {
-    class ProfileNotFoundException: Exception
+    public class ProfileNotFoundException: Exception
     {
         private const long serialVersionUID = 1L;
         private String profileNotFound;

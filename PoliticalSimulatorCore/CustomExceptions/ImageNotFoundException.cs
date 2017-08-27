@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.CustomExceptions
 {
-    class ImageNotFoundException
+    public class ImageNotFoundException
     {
         private const long serialVersionUID = 1L;
         private String fileName;

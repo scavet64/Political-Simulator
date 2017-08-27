@@ -1,5 +1,6 @@
 ﻿using PoliticalSimulatorCore.Controller;
 using PoliticalSimulatorCore.Model;
+using PoliticalSimulatorCore.CustomExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,10 +55,17 @@ namespace PoliticalSimulatorGUI
 
         private static void Login(string ProfileToLoad)
         {
-            UserProfile profile = LoginController.loadProfile(ProfileToLoad);
-            if(profile != null)
+            try
             {
-                MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.HomePage, profile);
+                UserProfile profile = LoginController.loadProfile(ProfileToLoad);
+                if (profile != null)
+                {
+                    MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.HomePage, profile);
+                }
+            }
+            catch (ProfileNotFoundException ex)
+            {
+                MessageBox.Show("Profile was not found");
             }
         }
 
