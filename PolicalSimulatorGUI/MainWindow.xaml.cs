@@ -53,7 +53,7 @@ namespace PoliticalSimulatorGUI
                     MainFrame.Content = loginPage;
                     break;
                 case MainDisplay.HomePage:
-                    if (additionalParams[0] != null && additionalParams[0] is UserProfile)
+                    if (additionalParams.Length > 0 && additionalParams[0] is UserProfile)
                     {
                         homePage.SetActiveProfile((UserProfile)additionalParams[0]);
                         MainFrame.Content = homePage;
