@@ -49,6 +49,7 @@ namespace PoliticalSimulatorGUI
                     break;
                 case MainDisplay.Game:
                     MainFrame.Content = new GamePage();
+                    this.WindowState = System.Windows.WindowState.Maximized;
                     break;
                 case MainDisplay.LoginPage:
                     MainFrame.Content = loginPage;
