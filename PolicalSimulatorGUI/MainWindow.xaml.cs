@@ -26,6 +26,10 @@ namespace PoliticalSimulatorGUI
         public MainWindow()
         {
             InitializeComponent();
+            FrameworkElement.StyleProperty.OverrideMetadata(typeof(Window), new FrameworkPropertyMetadata
+            {
+                DefaultValue = FindResource(typeof(Window))
+            });
             MainFrame.Content = loginPage;
         }
     }

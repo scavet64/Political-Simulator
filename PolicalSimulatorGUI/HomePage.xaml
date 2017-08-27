@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PoliticalSimulatorGUI"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="500"
+      d:DesignHeight="300" d:DesignWidth="400"
       Title="HomePage"
       Background="White">
 
@@ -13,16 +13,18 @@
         <Grid>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Label>What would you like to do?</Label>
-                <Button>Singleplayer</Button>
-                <Button>Multiplayer</Button>
-                <Button>Edit Deck</Button>
-                <Button>Store</Button>
-                <Button>Logout</Button>
-                <Button>Quit</Button>
+                <Border CornerRadius="5" Background="Aqua">
+                    <Button x:Name="SingleplayerButton" Background="Transparent" BorderBrush="Transparent">Singleplayer</Button>
+                </Border>
+                
+                <Button x:Name="MultiplayerButton" >Multiplayer</Button>
+                <Button x:Name="EditDeckButton">Edit Deck</Button>
+                <Button x:Name="StoreButton">Store</Button>
+                <Button x:Name="LogoutButton">Logout</Button>
+                <Button x:Name="QuitButton">quit</Button>
             </StackPanel>
 
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <Label>Stats for player</Label>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal">
                     <Label>Wins: </Label>
                     <Label x:Name="WinsLabel">0</Label>
@@ -36,7 +38,7 @@
                     <Label x:Name="CreditsLabel">0</Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label>Number of cards Collected:</Label>
+                    <Label>Cards Collected:</Label>
                     <Label x:Name="NumberOfCardsLabel">0</Label>
                 </StackPanel>
             </StackPanel>
