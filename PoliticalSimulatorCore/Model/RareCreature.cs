@@ -37,8 +37,8 @@ namespace PoliticalSimulatorCore.Model
         /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.RareCreature"/> class.
         /// </summary>
         /// <param name="rc">Rc.</param>
-        public RareCreature(RareCreature rc): base(rc.getName(), rc.getPlayFatigueValue(), rc.getChanceToHit(), rc.getAttackValue(), rc.getHealthValue(),
-                    rc.getType(), rc.getImgFilePath(), rc.getFieldImgPath())
+        public RareCreature(RareCreature rc): base(rc.Name, rc.PlayFatigueValue, rc.ChanceToHit, rc.AttackValue, rc.HealthValue,
+                    rc.CreatureType, rc.ImageFilePath, rc.FieldImgPath)
         {
         }
     }

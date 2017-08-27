@@ -9,7 +9,7 @@ namespace PoliticalSimulatorCore.Model
     public class Creature : Card
     {
 
-#region(Properties)
+#region Properties
 
         private const long serialVersionUID = 1L;
         private int attackValue;
@@ -159,7 +159,7 @@ namespace PoliticalSimulatorCore.Model
         /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.Creature"/> class.
         /// </summary>
         /// <param name="c">C.</param>
-        public Creature(Creature c): base (c.Name, c.FatigueValue, c.ImageFilePath)
+        public Creature(Creature c): base (c.Name, c.PlayFatigueValue, c.ImageFilePath)
         {
             this.attackValue = c.attackValue;
             this.attackFatigueValue = c.attackFatigueValue;
@@ -167,11 +167,6 @@ namespace PoliticalSimulatorCore.Model
             this.creatureType = c.CreatureType;
             this.chanceToHit = c.ChanceToHit;
             this.fieldImgPath = c.FieldImgPath;
-        }
-
-        public String getFieldImgPath()
-        {
-            return fieldImgPath;
         }
     }
 }

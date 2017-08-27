@@ -58,7 +58,7 @@ namespace PoliticalSimulatorCore.Model
             List<String> stringsOfCardsOwned = new List<String>();
             foreach (Card card in collectedCards)
             {
-                stringsOfCardsOwned.Add(card.getName());
+                stringsOfCardsOwned.Add(card.Name);
             }
             return stringsOfCardsOwned;
         }

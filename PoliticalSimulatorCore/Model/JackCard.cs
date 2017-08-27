@@ -59,7 +59,7 @@ namespace PoliticalSimulatorCore.Model
         /// <param name="rc">Rc.</param>
         public JackCard(JackCard rc):base(rc)
         {
-            this.pieceNumber = rc.getPieceNumber();
+            this.pieceNumber = rc.PieceNumber;
         }
     }
 }

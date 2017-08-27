@@ -170,7 +170,7 @@ namespace PoliticalSimulatorCore.Model
         {
             foreach (Card card in allCards)
             {
-                if (name.Equals(card.getName()))
+                if (name.Equals(card.Name))
                 {
                     return card;
                 }
