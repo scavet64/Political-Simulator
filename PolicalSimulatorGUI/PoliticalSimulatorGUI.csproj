@@ -117,5 +117,117 @@
       <Name>PoliticalSimulatorCore</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CardImages\adamCard.png" />
+    <Resource Include="CardImages\billCard.png" />
+    <Resource Include="CardImages\billyCard.png" />
+    <Resource Include="CardImages\bobrossCard.png" />
+    <Resource Include="CardImages\brianPepsCard.png" />
+    <Resource Include="CardImages\CardBack.png" />
+    <Resource Include="CardImages\champCard.png" />
+    <Resource Include="CardImages\CopyThatCard.png" />
+    <Resource Include="CardImages\countChocCard.png" />
+    <Resource Include="CardImages\cromulonCard.png" />
+    <Resource Include="CardImages\DancingPumpkinCard.png" />
+    <Resource Include="CardImages\estebanCard.png" />
+    <Resource Include="CardImages\flashingNannerCard.png" />
+    <Resource Include="CardImages\FreakyFredCard.png" />
+    <Resource Include="CardImages\gabeCard.png" />
+    <Resource Include="CardImages\glassBonesCard.png" />
+    <Resource Include="CardImages\hankCard.png" />
+    <Resource Include="CardImages\headOfJack.png" />
+    <Resource Include="CardImages\HsquidCard.png" />
+    <Resource Include="CardImages\jackMyers.png" />
+    <Resource Include="CardImages\kimJongUnCard.png" />
+    <Resource Include="CardImages\KingRamsesCard.png" />
+    <Resource Include="CardImages\leftArmOfJack.png" />
+    <Resource Include="CardImages\leftLegOfJack.png" />
+    <Resource Include="CardImages\LilBCard.png" />
+    <Resource Include="CardImages\MrBonesCard.png" />
+    <Resource Include="CardImages\mrMeeSeeksCard.png" />
+    <Resource Include="CardImages\mrSkeltalCard.png" />
+    <Resource Include="CardImages\oldTimerCard.png" />
+    <Resource Include="CardImages\OrangeOrangeCard.png" />
+    <Resource Include="CardImages\regginatorCard.png" />
+    <Resource Include="CardImages\rickCard.png" />
+    <Resource Include="CardImages\rightArmOfJack.png" />
+    <Resource Include="CardImages\rightLegOfJack.png" />
+    <Resource Include="CardImages\rockCard.png" />
+    <Resource Include="CardImages\saladFingersCard.png" />
+    <Resource Include="CardImages\saltyCard.png" />
+    <Resource Include="CardImages\sanicCard.png" />
+    <Resource Include="CardImages\ShrekCard.png" />
+    <Resource Include="CardImages\SnoopDoggCard.png" />
+    <Resource Include="CardImages\spookyPolicecard.png" />
+    <Resource Include="CardImages\toddCard.png" />
+    <Resource Include="CardImages\tonyCard.png" />
+    <Resource Include="CardImages\trevorCard.png" />
+    <Resource Include="CardImages\tunnelCard.png" />
+    <Resource Include="CardImages\VladimirPutinCard.png" />
+    <Resource Include="CardImages\waltCard.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="EnhancementImages\EAirhorn.png" />
+    <Resource Include="EnhancementImages\ECheese.png" />
+    <Resource Include="EnhancementImages\Efallout4.png" />
+    <Resource Include="EnhancementImages\Efedora.png" />
+    <Resource Include="EnhancementImages\EMonster.png" />
+    <Resource Include="EnhancementImages\Epowerarmor.png" />
+    <Resource Include="EnhancementImages\Espaghetti.png" />
+    <Resource Include="EnhancementImages\Estempack.png" />
+    <Resource Include="EnhancementImages\Estimpack.png" />
+    <Resource Include="EnhancementImages\Esword.png" />
+    <Resource Include="EnhancementImages\EtheRock.png" />
+    <Resource Include="EnhancementImages\Etriple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FieldImages\adamField.png" />
+    <Resource Include="FieldImages\basedGodField.png" />
+    <Resource Include="FieldImages\billField.png" />
+    <Resource Include="FieldImages\BillyMaysField.png" />
+    <Resource Include="FieldImages\bobRossField.png" />
+    <Resource Include="FieldImages\brianpepsfield.png" />
+    <Resource Include="FieldImages\champField.png" />
+    <Resource Include="FieldImages\CopyThatGuyField.png" />
+    <Resource Include="FieldImages\countchocfield.png" />
+    <Resource Include="FieldImages\CromulonField.png" />
+    <Resource Include="FieldImages\dancingpumpkinfield.png" />
+    <Resource Include="FieldImages\EstebanField.png" />
+    <Resource Include="FieldImages\flashingNanner.png" />
+    <Resource Include="FieldImages\freakyFredField.png" />
+    <Resource Include="FieldImages\gabeField.png" />
+    <Resource Include="FieldImages\glassBonesField.png" />
+    <Resource Include="FieldImages\handsomeSquidwardField.png" />
+    <Resource Include="FieldImages\hankField.png" />
+    <Resource Include="FieldImages\headOfJackField.png" />
+    <Resource Include="FieldImages\jackMyersField.png" />
+    <Resource Include="FieldImages\kimJongUnField.png" />
+    <Resource Include="FieldImages\kingramsesField.png" />
+    <Resource Include="FieldImages\leftArmOfJackField.png" />
+    <Resource Include="FieldImages\leftLegOfJackField.png" />
+    <Resource Include="FieldImages\mrbonesField.png" />
+    <Resource Include="FieldImages\mrMeeseeksField.png" />
+    <Resource Include="FieldImages\mrSkeltalField.png" />
+    <Resource Include="FieldImages\oldTimerField.png" />
+    <Resource Include="FieldImages\OrangeOrange.png" />
+    <Resource Include="FieldImages\regginatorField.png" />
+    <Resource Include="FieldImages\RickField.png" />
+    <Resource Include="FieldImages\rightArmOfJackField.png" />
+    <Resource Include="FieldImages\rightLegOfJackField.png" />
+    <Resource Include="FieldImages\RockField.png" />
+    <Resource Include="FieldImages\SaladFingersField.png" />
+    <Resource Include="FieldImages\saltyField.png" />
+    <Resource Include="FieldImages\sanicField.png" />
+    <Resource Include="FieldImages\ShrekField.png" />
+    <Resource Include="FieldImages\snoopDoggField.png" />
+    <Resource Include="FieldImages\spookyPoliceField.png" />
+    <Resource Include="FieldImages\ToddField.png" />
+    <Resource Include="FieldImages\tonyStarkField.png" />
+    <Resource Include="FieldImages\trevorField.png" />
+    <Resource Include="FieldImages\tunnelField.png" />
+    <Resource Include="FieldImages\VladPutinField.png" />
+    <Resource Include="FieldImages\waltField.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
