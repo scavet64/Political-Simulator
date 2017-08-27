@@ -11,9 +11,9 @@
 
     <Grid>
         <StackPanel x:Name="topStack" VerticalAlignment="Top" Height="300" HorizontalAlignment="Center" />
-        <Grid x:Name="FieldGrid" Margin="0,300,200,300">
-            <StackPanel VerticalAlignment="Top" Height="240" HorizontalAlignment="Center" />
-            <StackPanel VerticalAlignment="Bottom" Height="240" HorizontalAlignment="Center" />
+        <Grid x:Name="FieldGrid" Margin="0,300,200,300" DragEnter="FieldGrid_DragEnter" Background="Transparent" DragDrop.Drop="FieldGrid_DragEnter" AllowDrop="True">
+            <StackPanel VerticalAlignment="Top" Height="240" HorizontalAlignment="Center" Orientation="Horizontal"/>
+            <StackPanel x:Name="Player1Field" VerticalAlignment="Bottom" Height="240" HorizontalAlignment="Center" Orientation="Horizontal" />
         </Grid>
         <StackPanel x:Name="BottomStack" VerticalAlignment="Bottom" Height="300" HorizontalAlignment="Center" />
     </Grid>

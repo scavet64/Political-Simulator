@@ -34,5 +34,17 @@ namespace PoliticalSimulatorGUI
             InitializeComponent();
             DataContext = this;
         }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DataObject data = new DataObject();
+            data.SetData("object", this);
+            DragDropEffects effects = DragDrop.DoDragDrop(this, data, DragDropEffects.Move);
+            if(effects == DragDropEffects.Move)
+            {
+                //There has to be a better way to do this
+                GamePage.bottomStack.Remove(this);
+            }
+        }
     }
 }
