@@ -22,6 +22,8 @@ namespace PoliticalSimulatorGUI
     public partial class CardUIControl : UserControl
     {
 
+        private bool hasBeenPlayed = false;
+
         private Card card;
 
         public Card Card
@@ -30,20 +32,11 @@ namespace PoliticalSimulatorGUI
             set { card = value; }
         }
 
-
-        private string source;
-
-        public string Source
+        public CardUIControl(Card card)
         {
-            get { return source; }
-            set { source = value; }
-        }
-
-        public CardUIControl(string ImageSource)
-        {
-            this.Source = ImageSource;
             InitializeComponent();
-            DataContext = this;
+            this.BorderThickness = new Thickness(1);
+            DataContext = card;
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
@@ -54,8 +47,24 @@ namespace PoliticalSimulatorGUI
             DragDropEffects effects = DragDrop.DoDragDrop(this, data, DragDropEffects.Move);
             if(effects == DragDropEffects.Move)
             {
-                //There has to be a better way to do this
-                //GamePage.bottomStack.Remove(this);
+                hasBeenPlayed = true;
+            }
+        }
+
+        private void Imageimage_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (!hasBeenPlayed)
+            {
+                this.BorderBrush = Brushes.Aqua;
+            }
+            
+        }
+
+        private void Imageimage_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (!hasBeenPlayed)
+            {
+                this.BorderBrush = Brushes.Transparent;
             }
         }
     }

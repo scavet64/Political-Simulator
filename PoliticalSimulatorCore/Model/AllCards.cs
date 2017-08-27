@@ -19,8 +19,11 @@ namespace PoliticalSimulatorCore.Model
             //initialize all cards here		
             //name,fatigue,chance,attack,health,type,CardImage,FieldImage
             //Charismatic Cards
+            /*-1*/
+            allCards.Add(new Creature("Thonking", 2, 80, 1, 2, Type.CHARASMATIC, "CardImages\\2d4.png", "FieldImages//hankField.png"));
+
             /*0*/
-            allCards.Add(new Creature("Hank Hill", 2, 80, 1, 2, Type.CHARASMATIC, "CardImages//hankCard.png", "FieldImages//hankField.png"));
+            allCards.Add(new Creature("Hank Hill", 2, 80, 1, 2, Type.CHARASMATIC, "CardImages\\hankCard.png", "FieldImages//hankField.png"));
             /*1*/
             allCards.Add(new Creature("Billy Mays", 2, 90, 4, 2, Type.CHARASMATIC, "CardImages//billyCard.png", "FieldImages//BillyMaysField.png"));
             /*2*/

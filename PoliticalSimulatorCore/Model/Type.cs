@@ -57,6 +57,11 @@ namespace PoliticalSimulatorCore.Model
         /// <value>The self.</value>
         protected TypeEnum Self { get; private set; }
 
+        public string getName()
+        {
+            return Self.ToString();
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:PoliticalSimulatorCore.Model.Type"/> class.
         /// </summary>

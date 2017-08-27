@@ -117,6 +117,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\OPTIBelwe-Medium.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\OPTIBelwe-Medium.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -180,7 +184,9 @@
     <Resource Include="CardImages\VladimirPutinCard.png" />
     <Resource Include="CardImages\waltCard.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="CardPieces\attackIcon.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="EnhancementImages\EAirhorn.png" />
     <Resource Include="EnhancementImages\ECheese.png" />
@@ -242,6 +248,24 @@
     <Resource Include="FieldImages\tunnelField.png" />
     <Resource Include="FieldImages\VladPutinField.png" />
     <Resource Include="FieldImages\waltField.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CardPieces\Rare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CardPieces\heart_PNG685.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CardPieces\features-accuracy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CardPieces\Fatiguesmaller.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CardPieces\cardTemplate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CardImages\2d4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

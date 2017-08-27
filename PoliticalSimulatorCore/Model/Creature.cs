@@ -100,11 +100,23 @@ namespace PoliticalSimulatorCore.Model
 			}
 		}
 
-		/// <summary>
-		/// Gets or sets the type of the creature.
-		/// </summary>
-		/// <value>The type of the creature.</value>
-		public string FieldImgPath
+        /// <summary>
+        /// Gets or sets the type of the creature.
+        /// </summary>
+        /// <value>The type of the creature.</value>
+        public string CreatureTypeString
+        {
+            get
+            {
+                return creatureType.getName();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the type of the creature.
+        /// </summary>
+        /// <value>The type of the creature.</value>
+        public string FieldImgPath
 		{
 			get
 			{

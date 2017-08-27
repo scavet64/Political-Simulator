@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoliticalSimulatorCore.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,7 @@ namespace PoliticalSimulatorGUI
         {
             InitializeComponent();
             bottomStack = BottomStack.Children;
-            BottomStack.Children.Add(new CardUIControl("CardImages\\adamCard.png"));
+            BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetCardFromName("Thonking")));
         }
 
         private void FieldGrid_DragEnter(object sender, DragEventArgs e)
