@@ -30,5 +30,21 @@ namespace PoliticalSimulatorGUI
         {
 
         }
+
+        private void SingleplayerButton_Click(object sender, RoutedEventArgs e)
+        {
+            //This will need to do a lot more eventually.
+            MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.Game);
+        }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

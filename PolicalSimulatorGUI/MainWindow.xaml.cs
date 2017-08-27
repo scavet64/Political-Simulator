@@ -48,6 +48,7 @@ namespace PoliticalSimulatorGUI
                 case MainDisplay.EditDeck:
                     break;
                 case MainDisplay.Game:
+                    MainFrame.Content = new GamePage();
                     break;
                 case MainDisplay.LoginPage:
                     MainFrame.Content = loginPage;
