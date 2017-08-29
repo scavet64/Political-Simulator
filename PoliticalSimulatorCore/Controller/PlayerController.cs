@@ -42,83 +42,50 @@ namespace PoliticalSimulatorCore.Model {
         #region Gameplay Methods
 
         public bool draw() {
-            if(Profile.CurrentDeck.IsEmpty()) {
+            if (Profile.CurrentDeck.IsEmpty()) {
                 return false;
-            }
-
-
-
-            if (Hand.Count < MAX_HAND_SIZE) {
-                System.out.println("PLAYER: entered drawcard");
-                handOfCards.add(profile.getDeck().getTopCard());
-                if (isJackHere()) {
-                    System.out.println("PLAYER: entered if jackhere");
-                    combineJack();
-                    return JACK_FTW;
-                } else {
-                    return "";
-                }
-            } else if (handOfCards.size() > MAX_HAND_SIZE) {
-                return HAND_TOO_FULL;
+            } else if (Hand.Count >= MAX_HAND_SIZE) {
+                return false;
             } else {
-                return EMPTY_DECK;
+                Hand.Add(Profile.CurrentDeck.getTopCard());
+                CheckForJack();
+                return true;
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void CheckForJack() {
+            HashSet<int> jackSet = new HashSet<int>();
+            foreach (Card card in Hand) {
+                if (card is JackCard) {
+                    JackCard jackCard = card as JackCard;
+                    jackSet.Add(jackCard.PieceNumber);
+                }
+            }
+            if (jackSet.Count == 5) {
+                combineJack();
+            }
+        }
+
+        private void combineJack() {
+            using (var handEnumerator = Hand.GetEnumerator()) {
+                do {
+                    if (handEnumerator.Current is JackCard) {
+                        Hand.Remove(handEnumerator.Current);
+                    }
+                } while (handEnumerator.MoveNext());
+
+                Hand.Add(JackCard.JackMyers);
             }
         }
 
         #endregion
 
 
-
-        /**
-         * Checks if all five pieces of Jack are present in the Player's hand.
-         * @return true if all five cards of Jack are present in Player's hand, false if not
-         */
-        private boolean isJackHere() {
-            System.out.println("PLAYER: entered isJackHere");
-            HashSet<Integer> jackSet = new HashSet<Integer>();
-            for (Card card: handOfCards) {
-                if (card instanceof JackCard){
-                JackCard jackCard = (JackCard)card;
-                System.out.println(jackCard.getPieceNumber());
-                jackSet.add(jackCard.getPieceNumber());
-            }
-        }
-        System.out.println(jackSet.size());
-		if(jackSet.size() == 5){
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-    /**
-	 * Remove the five Jack cards from the hand and add the combined Jack Myers card to the hand.
-	 */
-    private void combineJack() {
-        Iterator<Card> it = handOfCards.iterator();
-        while (it.hasNext()) {
-            Card card = it.next();
-            if (card instanceof JackCard){
-                it.remove();
-            }
-        }
-        //		for(Card card: handOfCards){
-        //			if(card instanceof JackCard){
-        //				handOfCards.remove(card);
-        //			}
-        //		}
-        handOfCards.add(new RareCreature("Jack Myers", 6, 100, 20, 20, Type.Forbidden, "CardImages//jackMyers.png", "FieldImages//jackMyersField.png"));
-    }
-
-    /**
-	 * Play the given card at the given position. Can either put a creature from into the field, 
-	 * or use an enhancement on a rare creature.
-	 * @param card Card to play
-	 * @param playerNumber Player's side of the field
-	 * @param fieldLocation Location on the field
-	 * @return message
-	 */
-    public String playCard(Card card, Integer playerNumber, Integer fieldLocation) {
+        public String playCard(Card card, Integer playerNumber, Integer fieldLocation) {
         if (!hasInHand(card)) {
             return CARD_NOT_IN_HAND;
         } else if (!canPlay(card)) {
