@@ -24,7 +24,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Label x:Name="CreditsLabel" Content="{Binding Path=CreditsLabelValue}" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFFFFF"/>
+            <Label x:Name="CreditsLabel" Content="{Binding Path=CreditsLabelValue, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFFFFF"/>
 
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
                 <Label Content="Click to Purchase!" Foreground="White" HorizontalAlignment="Center"/>

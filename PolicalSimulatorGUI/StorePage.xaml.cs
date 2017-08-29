@@ -2,6 +2,7 @@
 using PoliticalSimulatorCore.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace PoliticalSimulatorGUI
     /// <summary>
     /// Interaction logic for StorePage.xaml
     /// </summary>
-    public partial class StorePage : Page
+    public partial class StorePage : Page, INotifyPropertyChanged
     {
 
         private string creditsLabelValue;
@@ -28,10 +29,22 @@ namespace PoliticalSimulatorGUI
         public string CreditsLabelValue
         {
             get { return creditsLabelValue; }
-            set { creditsLabelValue = value; }
+            set
+            {
+                creditsLabelValue = value;
+                NotifyPropertyChanged("CreditsLabelValue");
+            }
         }
 
         private string numberOfPacksLabel;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public string NumberOfPacksLabel
         {
@@ -59,12 +72,12 @@ namespace PoliticalSimulatorGUI
 
         private void BuyPackButton_Click(object sender, RoutedEventArgs e)
         {
-            if(sender is Button)
+            if (sender is Button)
             {
                 Button senderButton = (Button)sender;
                 ButtonTagObject extract = new ButtonTagObject((string)senderButton.Tag);
 
-                if(MainController.CurrentUserProfile.Credits < extract.TotalCost)
+                if (MainController.CurrentUserProfile.Credits < extract.TotalCost)
                 {
                     MainController.CurrentUserProfile.purchasePacks(extract.NumberOfPacks, extract.TotalCost);
                 }
