@@ -16,7 +16,7 @@
                 <Button x:Name="SingleplayerButton" Style="{DynamicResource CustomButtonStyle}" Click="SingleplayerButton_Click">Singleplayer</Button>
                 <Button x:Name="MultiplayerButton" Style="{DynamicResource CustomButtonStyle}">Multiplayer</Button>
                 <Button x:Name="EditDeckButton" Style="{DynamicResource CustomButtonStyle}">Edit Deck</Button>
-                <Button x:Name="StoreButton" Style="{DynamicResource CustomButtonStyle}">Store</Button>
+                <Button x:Name="StoreButton" Style="{DynamicResource CustomButtonStyle}" Click="StoreButton_Click">Store</Button>
                 <Button x:Name="LogoutButton" Style="{DynamicResource CustomButtonStyle}" Click="LogoutButton_Click">Logout</Button>
                 <Button x:Name="QuitButton" Style="{DynamicResource CustomButtonStyle}" Click="QuitButton_Click">Quit</Button>
             </StackPanel>

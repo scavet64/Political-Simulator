@@ -1,0 +1,47 @@
+﻿<Page x:Class="PoliticalSimulatorGUI.StorePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PoliticalSimulatorGUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="500"
+      Title="LoginPage"
+      Background="{DynamicResource MajorBackground}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label x:Name="CreditsLabel" Content="{Binding Path=CreditsLabelValue}" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFFFFF"/>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+                <Label Content="Click to Purchase!" Foreground="White"/>
+                <Button Tag="5" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >One Pack: 5 Credits</Button>
+                <Button Tag="8" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >One Pack: 8 Credits</Button>
+                <Button Tag="20" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >One Pack: 20 Credits</Button>
+                <Button Tag="35" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >One Pack: 35 Credits</Button>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Column="2">
+            <WrapPanel x:Name="WrapPanel"></WrapPanel>
+        </Border>
+        <Grid Grid.Row="2" Grid.Column="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="OpenPackButton" Click="OpenPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" HorizontalAlignment="Center" Width="100">Open Pack</Button>
+                <Button x:Name="LeaveStoreButton" Click="LeaveStoreButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" HorizontalAlignment="Center" Width="100">Leave Store</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -16,6 +16,7 @@ namespace PoliticalSimulatorGUI
 
         private LoginPage loginPage = new LoginPage();
         private HomePage homePage = new HomePage();
+        private StorePage store = new StorePage();
 
         public MainWindow()
         {
@@ -45,24 +46,31 @@ namespace PoliticalSimulatorGUI
             {
                 case MainDisplay.CreateProfile:
                     break;
+
                 case MainDisplay.EditDeck:
                     break;
+
                 case MainDisplay.Game:
                     MainFrame.Content = new GamePage();
                     this.WindowState = System.Windows.WindowState.Maximized;
                     break;
+
                 case MainDisplay.LoginPage:
                     MainFrame.Content = loginPage;
                     break;
+
                 case MainDisplay.HomePage:
                     if (additionalParams.Length > 0 && additionalParams[0] is UserProfile)
                     {
                         homePage.SetActiveProfile((UserProfile)additionalParams[0]);
-                        MainFrame.Content = homePage;
                     }
+                    MainFrame.Content = homePage;
                     break;
+
                 case MainDisplay.Store:
+                    MainFrame.Content = store;
                     break;
+
                 default:
                     break;
             }

@@ -22,13 +22,13 @@ namespace PoliticalSimulatorGUI
     public partial class GamePage : Page
     {
 
-        public static UIElementCollection bottomStack;
+        //public static UIElementCollection bottomStack;
 
         public GamePage()
         {
             InitializeComponent();
-            bottomStack = BottomStack.Children;
-            BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetCardFromName("Thonking")));
+            //bottomStack = BottomStack.Children;
+            //BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetCardFromName("Thonking")));
         }
 
         private void FieldGrid_DragEnter(object sender, DragEventArgs e)

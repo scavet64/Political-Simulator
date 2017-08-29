@@ -46,5 +46,10 @@ namespace PoliticalSimulatorGUI
         {
 
         }
+
+        private void StoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.Store);
+        }
     }
 }
