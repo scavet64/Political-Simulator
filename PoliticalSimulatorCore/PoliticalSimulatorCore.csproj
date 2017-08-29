@@ -43,6 +43,7 @@
     <Compile Include="Controller\GameController.cs" />
     <Compile Include="Controller\LogController.cs" />
     <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="Controller\MainController.cs" />
     <Compile Include="CustomExceptions\DeckFullException.cs" />
     <Compile Include="CustomExceptions\ImageNotFoundException.cs" />
     <Compile Include="CustomExceptions\ProfileNotFoundException.cs" />

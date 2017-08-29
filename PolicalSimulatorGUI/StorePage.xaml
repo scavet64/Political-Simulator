@@ -27,15 +27,15 @@
             <Label x:Name="CreditsLabel" Content="{Binding Path=CreditsLabelValue}" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFFFFF"/>
 
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
-                <Label Content="Click to Purchase!" Foreground="White"/>
-                <Button Tag="5" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >One Pack: 5 Credits</Button>
-                <Button Tag="8" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >One Pack: 8 Credits</Button>
-                <Button Tag="20" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >One Pack: 20 Credits</Button>
-                <Button Tag="35" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >One Pack: 35 Credits</Button>
+                <Label Content="Click to Purchase!" Foreground="White" HorizontalAlignment="Center"/>
+                <Button Tag="1|5" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >One Pack: 5 Credits</Button>
+                <Button Tag="2|8" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >Two Packs: 8 Credits</Button>
+                <Button Tag="5|20" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >Five Packs: 20 Credits</Button>
+                <Button Tag="10|35" Click="BuyPackButton_Click" Style="{DynamicResource CustomButtonStyle}" FontSize="12" >Ten Packs: 35 Credits</Button>
             </StackPanel>
         </Grid>
         <Border Grid.Column="2">
-            <WrapPanel x:Name="WrapPanel"></WrapPanel>
+            <local:AlignableWrapPanel x:Name="WrapPanel" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <Grid Grid.Row="2" Grid.Column="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

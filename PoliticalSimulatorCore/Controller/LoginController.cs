@@ -60,7 +60,7 @@ namespace PoliticalSimulatorCore.Controller
 
             try
             {
-                using (Stream stream = new FileStream("Profiles\\" + profileToSave.getName() + ".dat", FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+                using (Stream stream = new FileStream("Profiles\\" + profileToSave.Name + ".dat", FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
                 {
                     IFormatter formatter = new BinaryFormatter();
                     formatter.Serialize(stream, profileToSave);

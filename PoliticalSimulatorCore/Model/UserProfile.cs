@@ -11,17 +11,82 @@ namespace PoliticalSimulatorCore.Model
     public class UserProfile
     {
         private const long serialVersionUID = 1L;
-        private String name;
-        private int wins;
-        private int losses;
-        private int credits;    //credits the user can use to spend on new card packs
-        private Deck currentDeck;
-        private bool isFirstLoad;
         private const int MAX_NUMBER_OF_CARDS_IN_COLLECTION = 2;
-        private List<Pack> packs;
-        private List<Card> collectedCards;
-        private String playerImagePath;
 
+        private int wins;
+
+        public int Wins
+        {
+            get { return wins; }
+            set { wins = checkValue(value); }
+        }
+
+        private int credits;
+
+        public int Credits
+        {
+            get { return credits; }
+            set
+            {
+                credits = checkValue(value);
+            }
+        }
+
+        private int losses;
+
+        public int Losses
+        {
+            get { return losses; }
+            set { losses = checkValue(value); }
+        }
+
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        private bool isFirstLoad;
+
+        public bool IsFirstLoad
+        {
+            get { return isFirstLoad; }
+            set { isFirstLoad = value; }
+        }
+
+        private Deck currentDeck;
+
+        public Deck CurrentDeck
+        {
+            get { return currentDeck; }
+            set { currentDeck = value; }
+        }
+
+        private List<Pack> packs;
+
+        public List<Pack> Packs
+        {
+            get { return packs; }
+            set { packs = value; }
+        }
+
+        private List<Card> collectedCards;
+
+        public List<Card> CollectedCards
+        {
+            get { return collectedCards; }
+            set { collectedCards = value; }
+        }
+
+        private string playerImagePath;
+
+        public string PlayerImagePath
+        {
+            get { return playerImagePath; }
+            set { playerImagePath = value; }
+        }
 
         //	maybe one day
         //	private ArrayList <Deck> decks = new ArrayList<Deck>();
@@ -40,7 +105,7 @@ namespace PoliticalSimulatorCore.Model
             packs = new List<Pack>();
             credits = 100;
             playerImagePath = "images//defaultPlayer.png";
-            setFirstLoad(true);
+            IsFirstLoad = true;
         }
 
         /// <summary>
@@ -139,171 +204,18 @@ namespace PoliticalSimulatorCore.Model
         /**
          * @Param creditsToSubtract Credits to be removed from the user's stats.
          */
-        private void subtractCredits(int creditsToSubtract)
+        public void subtractCredits(int creditsToSubtract)
         {
             this.credits -= creditsToSubtract;
         }
 
-        ///////Getters & Setters///////
-
-        /**
-         * @return the name
-         */
-        public String getName()
+        private int checkValue(int valueToCheck)
         {
-            return name;
-        }
-
-        /**
-         * @param name the name to set
-         */
-        public void setName(String name)
-        {
-            this.name = name;
-        }
-
-        /**
-         * @return the wins
-         */
-        public int getWins()
-        {
-            return wins;
-        }
-
-        /**
-         * @param wins the wins to set
-         */
-        public void setWins(int wins)
-        {
-            this.wins = wins;
-        }
-
-        /**
-         * @return the losses
-         */
-        public int getLosses()
-        {
-            return losses;
-        }
-
-        /**
-         * @param losses the losses to set
-         */
-        public void setLosses(int losses)
-        {
-            this.losses = losses;
-        }
-
-        /**
-         * @return the deck
-         */
-        public Deck getDeck()
-        {
-            return currentDeck;
-        }
-
-        /**
-         * @param deck the deck to set
-         */
-        public void setDeck(Deck deck)
-        {
-            this.currentDeck = deck;
-        }
-
-        /**
-         * @return the collectedCards
-         */
-        public List<Card> getCollectedCards()
-        {
-            return collectedCards;
-        }
-
-        /**
-         * @param collectedCards the collectedCards to set
-         */
-        public void setCollectedCards(List<Card> collectedCards)
-        {
-            this.collectedCards = collectedCards;
-        }
-
-        /**
-         * @return the credits
-         */
-        public int getCredits()
-        {
-            return credits;
-        }
-
-        /**
-         * @param credits the credits to set
-         */
-        public void setCredits(int credits)
-        {
-            this.credits = credits;
-        }
-
-        /**
-         * @return the packs
-         */
-        public List<Pack> getPacks()
-        {
-            return packs;
-        }
-
-        /**
-         * @param packs the packs to set
-         */
-        public void setPacks(List<Pack> packs)
-        {
-            this.packs = packs;
-        }
-
-        /**
-         * Increment wins
-         */
-        public void addWin()
-        {
-            wins++;
-        }
-
-        /**
-         * increment losses
-         */
-        public void addLoss()
-        {
-            losses++;
-        }
-
-        /**
-         * @return the playerImagePath
-         */
-        public String getPlayerImagePath()
-        {
-            return playerImagePath;
-        }
-
-        /**
-         * @param playerImagePath the playerImagePath to set
-         */
-        public void setPlayerImagePath(String playerImagePath)
-        {
-            this.playerImagePath = playerImagePath;
-        }
-
-        /**
-         * @return the isFirstLoad
-         */
-        public bool IsFirstLoad()
-        {
-            return isFirstLoad;
-        }
-
-        /**
-         * @param isFirstLoad the isFirstLoad to set
-         */
-        public void setFirstLoad(bool isFirstLoad)
-        {
-            this.isFirstLoad = isFirstLoad;
+            if(valueToCheck < 0)
+            {
+                return 0;
+            }
+            return valueToCheck;
         }
     }
 }

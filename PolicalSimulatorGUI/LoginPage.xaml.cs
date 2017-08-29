@@ -60,7 +60,9 @@ namespace PoliticalSimulatorGUI
                 UserProfile profile = LoginController.loadProfile(ProfileToLoad);
                 if (profile != null)
                 {
-                    MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.HomePage, profile);
+                    //set the current profile
+                    MainController.CurrentUserProfile = profile;
+                    MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.HomePage);
                 }
             }
             catch (ProfileNotFoundException ex)
