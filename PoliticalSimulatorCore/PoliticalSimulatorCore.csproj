@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\GameController.cs" />
+    <Compile Include="Controller\LogController.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="CustomExceptions\DeckFullException.cs" />
     <Compile Include="CustomExceptions\ImageNotFoundException.cs" />
@@ -49,9 +51,11 @@
     <Compile Include="Model\Creature.cs" />
     <Compile Include="Model\Deck.cs" />
     <Compile Include="Model\Enhancement.cs" />
+    <Compile Include="Model\Game Model\Fatigue.cs" />
     <Compile Include="Model\IEnhanceable.cs" />
     <Compile Include="Model\JackCard.cs" />
     <Compile Include="Model\Pack.cs" />
+    <Compile Include="Model\Game Model\Player.cs" />
     <Compile Include="Model\RareCreature.cs" />
     <Compile Include="Model\Type.cs" />
     <Compile Include="Model\UserProfile.cs" />
