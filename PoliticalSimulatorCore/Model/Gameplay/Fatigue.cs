@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model.Game_Model {
-    class Fatigue {
+    public class Fatigue {
 
         #region Constants
 

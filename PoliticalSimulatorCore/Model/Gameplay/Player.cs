@@ -1,7 +1,7 @@
 ﻿using PoliticalSimulatorCore.Model.Game_Model;
 
 namespace PoliticalSimulatorCore.Model {
-    class Player {
+    public class Player {
 
         #region Properties
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model {
-    class Field : List<Creature> {
+    public class Field : List<Creature> {
         public Field(int capacity) : base(capacity) {
         }
     }

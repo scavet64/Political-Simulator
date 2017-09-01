@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace PoliticalSimulatorCore.Controller {
-    class GameController {
+    public class GameController {
 
         #region Constants
 
-        private const int MAX_HAND_SIZE = 5;
-        private const int MAX_FIELD_SIZE = 5;
-        private const int START_HEALTH = 10;
-        private const int CARDS_AT_START = 3;
-        private const int WIN_CREDIT_AWARD = 5;
+        public const int MAX_HAND_SIZE = 5;
+        public const int MAX_FIELD_SIZE = 5;
+        public const int START_HEALTH = 10;
+        public const int CARDS_AT_START = 3;
+        public const int WIN_CREDIT_AWARD = 5;
         private static Random RNG = new Random();
 
         #endregion
@@ -29,7 +29,13 @@ namespace PoliticalSimulatorCore.Controller {
 
         public Player CurrentPlayer {
             get {
-                return Players[turn % Players.Count];
+                return Players[CurrentPlayerTurn];
+            }
+        }
+
+        public int CurrentPlayerTurn {
+            get {
+                return turn % Players.Count;
             }
         }
 

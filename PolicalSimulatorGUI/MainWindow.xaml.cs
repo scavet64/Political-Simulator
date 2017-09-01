@@ -1,5 +1,6 @@
 ﻿using PoliticalSimulatorCore.Model;
 using PoliticalSimulatorGUI.Pages;
+using System.Linq;
 using System.Windows;
 
 namespace PoliticalSimulatorGUI
@@ -54,7 +55,13 @@ namespace PoliticalSimulatorGUI
                     break;
 
                 case MainDisplay.Game:
-                    MainFrame.Content = new GamePage();
+
+                    Player[] players = new Player[additionalParams.Length];
+                    for (int i = 0; i < additionalParams.Length; i++) {
+                        players[i] = additionalParams[i] as Player;
+                    }
+                    
+                    MainFrame.Content = new GamePage(players);
                     this.WindowState = System.Windows.WindowState.Maximized;
                     break;
 

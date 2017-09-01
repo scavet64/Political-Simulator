@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Model {
-    class Hand : List<Card> {
+    public class Hand : List<Card> {
         public Hand(int capacity) : base(capacity) {
         }
     }

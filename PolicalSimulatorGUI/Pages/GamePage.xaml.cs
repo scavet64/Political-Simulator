@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PoliticalSimulatorCore.Controller;
 
 namespace PoliticalSimulatorGUI
 {
@@ -22,25 +23,61 @@ namespace PoliticalSimulatorGUI
     /// </summary>
     public partial class GamePage : Page
     {
+        private GameController controller;
 
-        //public static UIElementCollection bottomStack;
-
-        public GamePage()
+        public GamePage(params Player[] players)
         {
             InitializeComponent();
-            //bottomStack = BottomStack.Children;
-            BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetAllCards()[0]));
-            BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetAllCards()[0]));
-            BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetAllCards()[0]));
-            BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetAllCards()[0]));
+
+            controller = new GameController(players);
+
+            // Currently only supports 2 players.
+            // Setup fields.
+            // Create Columns and add to grid based on max field size.
+            for (int i = 0; i < GameController.MAX_FIELD_SIZE; i++) {
+                playerOneField.ColumnDefinitions.Add(new ColumnDefinition());
+                playerTwoField.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+            // Setup hands.
+            // Create Columns and add to grid based on max hand size.
+            for (int i = 0; i < GameController.MAX_HAND_SIZE; i++) {
+                playerOneHand.ColumnDefinitions.Add(new ColumnDefinition());
+                playerTwoField.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+            // Set player images.
+            BitmapImage image = new BitmapImage(new Uri(players[0].Profile.PlayerImagePath, UriKind.Relative));
+            PlayerOneIcon.Source = image;
+            image = new BitmapImage(new Uri(players[1].Profile.PlayerImagePath, UriKind.Relative));
+            PlayerTwoIcon.Source = image;
+
+            // For testing... Add field cards
+            playerOneField.Children.Add(new FieldUIControl(AllCards.getInstance().GetAllCards()[0]));
+
+            StartTurn();
+        }
+
+        private void StartTurn() {
+            if(controller.CurrentPlayerTurn == 0) {
+                UpdateHand(controller.CurrentPlayer, playerOneHand);
+            } else {
+                UpdateHand(controller.CurrentPlayer, playerTwoHand);
+            }
+        }
+
+        private void UpdateHand(Player player, Grid hand) {
+            hand.Children.Clear();
+            CardUIControl cardUI;
+            for (int i = 0; i < player.Hand.Count; i++) {
+                cardUI = new CardUIControl(player.Hand[i]);
+                Grid.SetColumn(cardUI, i);
+                hand.Children.Add(cardUI);
+            }
         }
 
         private void FieldGrid_DragEnter(object sender, DragEventArgs e)
         {
             //e.Effects = DragDropEffects.All;
         }
-
-
 
         protected override void OnDrop(DragEventArgs e)
         {
@@ -62,7 +99,7 @@ namespace PoliticalSimulatorGUI
                 {
                     e.Effects = DragDropEffects.Move;
                     ((StackPanel)e.Data.GetData("ParentElement")).Children.Remove(cardUiControl);
-                    Player1Field.Children.Add(new FieldUIControl(cardUiControl.Card));
+                    //Player1Field.Children.Add(new FieldUIControl(cardUiControl.Card));
                 }
             }
             e.Handled = true;

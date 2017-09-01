@@ -50,6 +50,7 @@
     <Compile Include="Model\Card\AllCards.cs" />
     <Compile Include="Model\Card\Card.cs" />
     <Compile Include="Model\Card\Creature.cs" />
+    <Compile Include="AI\AIPlayer.cs" />
     <Compile Include="Model\Gameplay\Deck.cs" />
     <Compile Include="Model\Card\Enhancement.cs" />
     <Compile Include="Model\Gameplay\Fatigue.cs" />
@@ -64,8 +65,6 @@
     <Compile Include="Model\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,17 +4,75 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PoliticalSimulatorGUI"
+      xmlns:local1="clr-namespace:PoliticalSimulatorGUI.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="GamePage"
       Background="{StaticResource MajorBackground}">
 
-    <Grid>
-        <StackPanel x:Name="topStack" VerticalAlignment="Top" Height="300" HorizontalAlignment="Center" />
-        <Grid x:Name="FieldGrid" Margin="0,300,200,300" DragEnter="FieldGrid_DragEnter" Background="Transparent" DragDrop.Drop="FieldGrid_DragEnter" AllowDrop="True">
-            <StackPanel VerticalAlignment="Top" Height="240" HorizontalAlignment="Center" Orientation="Horizontal"/>
-            <StackPanel x:Name="Player1Field" VerticalAlignment="Bottom" Height="240" HorizontalAlignment="Center" Orientation="Horizontal" />
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="playerTwoSide">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="playerTwoDeck" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="211"
+               Source="/Images/CardImages/CardBack.png"></Image>
+
+            <Grid x:Name="playerTwoHand" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ShowGridLines="True">
+
+            </Grid>
+
+            <Border Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="240" Width="240" BorderThickness="2" BorderBrush="White">
+                <Image x:Name="PlayerTwoIcon" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="240" Width="240"></Image>
+            </Border>
+
+            <Grid x:Name="playerTwoField" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" ShowGridLines="True">
+
+            </Grid>
         </Grid>
-        <StackPanel x:Name="BottomStack" VerticalAlignment="Bottom" Height="300" HorizontalAlignment="Center" Orientation="Horizontal" />
+
+        <Grid x:Name="playerOneSide" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="playerOneDeck" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="211"
+               Source="/Images/CardImages/CardBack.png"></Image>
+
+            <Grid x:Name="playerOneHand" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ShowGridLines="True">
+
+            </Grid>
+
+            <Border Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="240" Width="240" BorderThickness="2" BorderBrush="White">
+                <Image x:Name="PlayerOneIcon" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="240" Width="240"></Image>
+            </Border>
+
+            <Grid x:Name="playerOneField" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" ShowGridLines="True">
+
+            </Grid>
+        </Grid>
+
     </Grid>
 </Page>

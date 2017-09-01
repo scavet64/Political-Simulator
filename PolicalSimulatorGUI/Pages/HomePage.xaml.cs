@@ -1,4 +1,5 @@
-﻿using PoliticalSimulatorCore.Controller;
+﻿using PoliticalSimulatorCore.AI;
+using PoliticalSimulatorCore.Controller;
 using PoliticalSimulatorCore.Model;
 using System;
 using System.Collections.Generic;
@@ -34,8 +35,10 @@ namespace PoliticalSimulatorGUI
 
         private void SingleplayerButton_Click(object sender, RoutedEventArgs e)
         {
-            //This will need to do a lot more eventually.
-            MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.Game);
+            Player user = new Player(MainController.CurrentUserProfile, GameController.MAX_FIELD_SIZE, GameController.MAX_HAND_SIZE, GameController.START_HEALTH);
+            Player ai = new AIPlayer(GameController.MAX_FIELD_SIZE, GameController.MAX_HAND_SIZE, GameController.START_HEALTH);
+
+            MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.Game, user, ai);
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
