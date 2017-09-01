@@ -15,8 +15,8 @@
         <TextBlock Text="{Binding Path=ChanceToHit}" Foreground="White" FontFamily="./#OPTIBelwe" FontSize="18" TextAlignment="Center" Margin="178,10,8,270" />
         <TextBlock Text="{Binding Path=AttackValue}" Foreground="White" FontFamily="./#OPTIBelwe" FontSize="18" TextAlignment="Center" Margin="20,263,172,14" />
         <TextBlock Text="{Binding Path=HealthValue}" Foreground="White" FontFamily="./#OPTIBelwe" FontSize="18" TextAlignment="Center" Margin="168,263,20,14" />
-        <TextBlock Text="{Binding Path=CreatureTypeString}" Foreground="White" FontFamily="./#OPTIBelwe" FontSize="10" TextAlignment="Center" Margin="66,273,64,14" >
-        </TextBlock>
+        <!--<TextBlock Text="{Binding Path=CreatureTypeString}" Foreground="White" FontFamily="./#OPTIBelwe" FontSize="10" TextAlignment="Center" Margin="66,273,64,14" >
+        </TextBlock>-->
         <!--<Button Style="{DynamicResource BlankButton}" >
 
         </Button>-->
