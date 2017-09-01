@@ -2,255 +2,320 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PoliticalSimulatorCore.Controller {
     class GameController {
 
-        public List<PlayerController> Players { get; set; }
+        #region Constants
+
+        private const int MAX_HAND_SIZE = 5;
+        private const int MAX_FIELD_SIZE = 5;
+        private const int START_HEALTH = 10;
+        private const int CARDS_AT_START = 3;
+        private const int WIN_CREDIT_AWARD = 5;
+        private static Random RNG = new Random();
+
+        #endregion
+
+        #region Fields
 
         private int turn;
 
+        #endregion
 
-        private final String savedDeckPlayerOne = "playerOneDeck.ser";
-	private final String savedDeckPlayerTwo = "playerTwoDeck.ser";
-	public final static boolean AI_GAME = true;
-            public final static boolean MULTIPLAYER_GAME = false;
+        #region Properties
 
-            private final int CARDS_AT_START = 3;
-            private final int WIN_CREDIT_AWARD = 5;
-            private boolean gameOver = false;
+        public List<Player> Players { get; set; }
 
+        public Player CurrentPlayer {
+            get {
+                return Players[turn % Players.Count];
+            }
+        }
 
-            /**
-             * Constructor for Game
-             * @param playerOneProfile the active player to be put in the game
-             * @param playerTwoProfile the challenger player to be put in the game
-             * @param isAI true if there is an AI player
-             */
-            public Game(UserProfile playerOneProfile, UserProfile playerTwoProfile, boolean isAI) {
-                //This is only for the presentation & demo
-                //In the future, users can choose their own player image
-                //In hopes to meet the deadline, this functionality can be added later
-                playerOneProfile.setPlayerImagePath("PlayerImages//DonaldTrumpPlayer.png");
-                playerTwoProfile.setPlayerImagePath("PlayerImages//HillaryClintonPlayer.png");
+        #endregion
 
-                field.put(1, new HashMap<Integer, Creature>());
-                field.put(2, new HashMap<Integer, Creature>());
-                try(ObjectOutputStream deckOutputOne = new ObjectOutputStream(new FileOutputStream(savedDeckPlayerOne));
-                ObjectOutputStream deckOutputTwo = new ObjectOutputStream(new FileOutputStream(savedDeckPlayerTwo))) {
-                    deckOutputOne.writeObject(playerOneProfile.getDeck());
-                    deckOutputTwo.writeObject(playerTwoProfile.getDeck());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        #region Constructor
 
-                playerOne = new PlayerController(1, playerOneProfile, field);
-                if (isAI) {
-                    playerTwo = new AI(2, playerTwoProfile, field, this);
-                } else {
-                    playerTwo = new PlayerController(2, playerTwoProfile, field);
-                }
-                turn = 0;
+        public GameController(params Player[] players) {
 
+            // Error: no players passed.
+            if (players == null || players.Length == 0) {
+                throw new ArgumentNullException("players");
+            }
+
+            // Add the passed players into the controller's list of players.
+            Players = players.ToList();
+
+            // Set the turn.
+            turn = 0;
+
+            // Allow all players to draw the predefined amount of cards at the start of the game.
+            foreach (Player player in Players) {
                 for (int i = 0; i < CARDS_AT_START; i++) {
-                    playerOne.draw();
-                    playerTwo.draw();
-                }
-
-                playerOne.incrementFatigue();
-            }
-
-            /**
-             * Return the Creature at the specified field location. If there is no Creature, return null.
-             * @param playerSide what player field is being looked at
-             * @param position Where on playerSide is being looked at
-             * @return Card on player's field, null if empty
-             */
-            public Creature getCreatureAtPosition(int playerSide, int position) {
-                try {
-                    return field.get(playerSide).get(position);
-                } catch (Exception e) {
-                    return null;
+                    Draw(player);
                 }
             }
+        }
 
-            /**
-             * Return the current player's turn in an integer format. 
-             * @return 1 if player one's turn, 2 if player two's turn
-             */
-            public int getCurrentPlayerTurn() {
-                return (turn % 2) + 1;
+        #endregion
+
+        #region Gameplay Methods
+
+        public void EndTurn() {
+            Player player = CurrentPlayer;
+            Draw(player);
+            player.PlayerFatigue.Increment();
+            turn++;
+        }
+
+        public static bool Draw(Player player) {
+            if (player.Profile.CurrentDeck.IsEmpty()) {
+                return false;
+            } else if (player.Hand.Count >= MAX_HAND_SIZE) {
+                return false;
+            } else {
+                player.Hand.Add(player.Profile.CurrentDeck.getTopCard());
+                CheckForJack(player.Hand);
+                return true;
+            }
+        }
+
+        public static bool PlayCard(Player player, Creature card, int fieldLocation) {
+            if (!InHand(player.Hand, card)) {
+                return false;
             }
 
-            /**
-             * Return the Player whose turn it currently is.
-             * @return Player one if it is Player one's turn, Player two if it is Player two's turn
-             */
-            public PlayerController getCurrentPlayer() {
-                if (getCurrentPlayerTurn() == 1) {
-                    return playerOne;
+            if (SpaceOnField(player.Field)) {
+                if (player.PlayerFatigue.UseFatigue(card.PlayFatigueValue)) {
+                    player.Hand.Remove(card);
+                    player.Field[fieldLocation] = card;
+                    return true;
                 } else {
-                    return playerTwo;
+                    return false;
                 }
+            } else {
+                return false;
+            }
+        }
+
+        public static bool PlayCard(Player player, Enhancement enhancement, Field field, int fieldLocation) {
+            if (!InHand(player.Hand, enhancement)) {
+                return false;
             }
 
-            /**
-             * Return the Player whose turn it is currently not
-             * @return Player two if it is Player one's turn, Player one if it is Player two's turn
-             */
-            public PlayerController getOpposingPlayer() {
-                if (getCurrentPlayerTurn() == 1) {
-                    return playerTwo;
-                } else {
-                    return playerOne;
-                }
+            if(player.PlayerFatigue.TooFatigued(enhancement.PlayFatigueValue)) {
+                return false;
             }
 
-            /**
-             * Allow calling Player to draw a card, update the current turn, 
-             * and increment fatigue for the next Player.
-             * @return The Player's draw message
-             */
-            public String endTurn() {
-                String message = getCurrentPlayer().draw();
-                turn++;
-                getCurrentPlayer().incrementFatigue();
-                return message;
-            }
+            if (CardAtLocation(field, fieldLocation)) {
 
-            /**
-             * Return the Card at the specified hand location. If there is no Card, return null.
-             * @param player The Player's hand to search
-             * @param position Where in the hand to search
-             * @return Card in player's hand at the position, null if empty
-             */
-            public Card getCardInHandPostition(int player, int position) {
-                try {
-                    if (player == 1) {
-                        return playerOne.getHandOfCards().get(position);
-                    } else {
-                        return playerTwo.getHandOfCards().get(position);
-                    }
-                } catch (Exception e) {
-                    return null;
-                }
-            }
+                if (field[fieldLocation] is IEnhanceable) {
+                    Creature creatureToModify = field[fieldLocation];
 
-            /**
-             * Apply an action with the two given position selections. 
-             * Depending on the locations, the action could include attack, or play.
-             * @param label_position_sideSelectionOne The first position selection
-             * @param label_position_sideSelectionTwo The second position selection
-             * @return The message concatenated from all applied actions
-             */
-            public String applyAction(String[] label_position_sideSelectionOne, String[] label_position_sideSelectionTwo) {
-                int position = Integer.parseInt(label_position_sideSelectionTwo[1]);
-                Card actionCard;
-                switch (label_position_sideSelectionOne[0]) {
-                    case "field":
-                        actionCard = getCreatureAtPosition(getCurrentPlayer().getPlayerSide(),
-                                                            Integer.parseInt(label_position_sideSelectionOne[1]));
-                        if (label_position_sideSelectionTwo[0].equals("player")) {
-                            // Attack the Player
-                            String message = (getCurrentPlayer().attack((Creature)actionCard, getOpposingPlayer()));
-                            if (getOpposingPlayer().getHealthPoints() <= 0) {
-                                gameOver();
-                                return "";
-                            }
-                            return message;
-                        } else {
-                            int opponentsSide = getOpposingPlayer().getPlayerSide();
-                            int attackingCardPosition = Integer.parseInt(label_position_sideSelectionOne[1]);
-                            Creature creatureToAttack = getCreatureAtPosition(opponentsSide, position);
-                            // Attack the Creature
-                            String message = (getCurrentPlayer().attack((Creature)actionCard, opponentsSide, position, PlayerController.WITH_FATIGUE));
-                            if (message.equals(PlayerController.FATIGUED)) {
-                                // No attack
+                    switch (enhancement.getStat()) {
+                        case Enhancement.ATTACK:
+                            creatureToModify.AttackValue += enhancement.getModValue();
+                            break;
+                        case Enhancement.HEALTH:
+                            creatureToModify.HealthValue += enhancement.getModValue();
+                            break;
+                        case Enhancement.FATIGUE:
+                            if ((creatureToModify.AttackFatigueValue + enhancement.getModValue()) > 0) {
+                                creatureToModify.AttackFatigueValue += enhancement.getModValue();
                             } else {
-                                if (!message.equals(PlayerController.ATTACK_MISSED)) {
-                                    message += ((Creature)actionCard).getType().modifierString(creatureToAttack.getType());
-                                }
-                                // Creature attacks back
-                                String attackBackMessage = (getOpposingPlayer().attack(creatureToAttack, getCurrentPlayer().getPlayerSide(), attackingCardPosition, PlayerController.NO_FATIGUE));
-                                if (!attackBackMessage.equals(PlayerController.ATTACK_MISSED)) {
-                                    attackBackMessage += (creatureToAttack).getType().modifierString(((Creature)actionCard).getType());
-                                }
-                                message += attackBackMessage;
+                                return false;
                             }
-                            return message;
-                        }
-                    case "hand":
-                        actionCard = getCurrentPlayer().getHandOfCards().get(Integer.parseInt(label_position_sideSelectionOne[1]));
-                        if ((getCurrentPlayerTurn() == 1 && label_position_sideSelectionTwo[2].equals("north")) ||
-                            getCurrentPlayerTurn() == 2 && label_position_sideSelectionTwo[2].equals("south")) {
-                            //Enhance opposing player's card
-                            return (getCurrentPlayer().playCard(actionCard, getOpposingPlayer().getPlayerSide(), position));
+                            break;
+                        case Enhancement.CHANCE_TO_ATTACK:
+                            creatureToModify.ChanceToHit += enhancement.getModValue();
+                            break;
+                    }
+
+                    player.PlayerFatigue.UseFatigue(enhancement.PlayFatigueValue);
+                    player.Hand.Remove(enhancement);
+                    return true;
+
+                }else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        public static bool Attack(Player player, Creature attackingCreature, Field field, int fieldLocation) {
+            if (CardAtLocation(field, fieldLocation)) {
+                if (player.PlayerFatigue.UseFatigue(attackingCreature.AttackFatigueValue)) {
+                    if (AttackMissed(attackingCreature.ChanceToHit)) {
+                        return true;
+                    } else {
+                        Creature creatureAttacked = field[fieldLocation];
+
+                        // Apply damage to attacked card
+                        int attackValue = attackingCreature.AttackValue + attackingCreature.CreatureType.applyModifier(creatureAttacked.CreatureType);
+                        creatureAttacked.HealthValue -= attackValue;
+
+                        // Check if the creature died
+                        if (creatureAttacked.HealthValue <= 0) {
+                            //The creature is dead therefore it is removed from its location
+                            field.Remove(creatureAttacked);
+                            return true;
                         } else {
-                            // Play the Card or enhance own card
-                            return (getCurrentPlayer().playCard(actionCard, getCurrentPlayer().getPlayerSide(), position));
+                            return true;
                         }
+                    }
+                } else {
+                    return false;
                 }
-                return "error";
+            } else {
+                return false;
             }
+        }
 
-            /**
-             * Update stats for the winning and losing player. 
-             * Add credits to winning Player, and reload the Players' Deck.
-             */
-            private void gameOver() {
-                // Update Stats
-                UserProfile winningPlayer = getCurrentPlayer().getProfile();
-                UserProfile losingPlayer = getOpposingPlayer().getProfile();
-                winningPlayer.addWin();
-                winningPlayer.addCredits(WIN_CREDIT_AWARD);
-                losingPlayer.addLoss();
-                // Reload Decks
-                reloadDecks();
-                gameOver = true;
-                return;
-            }
+        public static bool Attack(Player player, Creature attackingCreature, Player playerToAttack) {
+            if (playerToAttack.Field.Count > 0) {
+                return false;
+            } else {
+                if (player.PlayerFatigue.UseFatigue(attackingCreature.AttackFatigueValue)) {
+                    if (AttackMissed(attackingCreature.ChanceToHit)) {
+                        return true;
+                    } else {
+                        playerToAttack.Health -= attackingCreature.AttackValue;
+                        return true;
+                    }
 
-            /**
-             * Reload Player's Deck.
-             */
-            public void quitGame() {
-                reloadDecks();
-            }
-
-            /**
-             * Reload the Players' Deck to the state saved at the beginning of the game.
-             */
-            private void reloadDecks() {
-                try(ObjectInputStream getDeckOne = new ObjectInputStream(new FileInputStream(savedDeckPlayerOne));
-                ObjectInputStream getDeckTwo = new ObjectInputStream(new FileInputStream(savedDeckPlayerTwo))) {
-                    playerOne.getProfile().setDeck((Deck)getDeckOne.readObject());
-                    playerTwo.getProfile().setDeck((Deck)getDeckTwo.readObject());
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } else {
+                    return false;
                 }
             }
+        }
 
-            /**
-             * @return Player one
-             */
-            public PlayerController getPlayerOne() {
-                return playerOne;
-            }
+        #endregion
 
-            /**
-             * @return Player two
-             */
-            public PlayerController getPlayerTwo() {
-                return playerTwo;
-            }
+        #region Private Methods
 
-            /**
-             * @return true if game is over, false if not
-             */
-            public Boolean isGameOver() {
-                return gameOver;
+        private static bool AttackMissed(int chanceToHit) {
+            return chanceToHit < RNG.Next(100);
+        }
+
+        private static void CheckForJack(Hand hand) {
+            HashSet<int> jackSet = new HashSet<int>();
+            foreach (Card card in hand) {
+                if (card is JackCard) {
+                    JackCard jackCard = card as JackCard;
+                    jackSet.Add(jackCard.PieceNumber);
+                }
             }
+            if (jackSet.Count == 5) {
+                CombineJack(hand);
+            }
+        }
+
+        private static void CombineJack(Hand hand) {
+            using (var handEnumerator = hand.GetEnumerator()) {
+                do {
+                    if (handEnumerator.Current is JackCard) {
+                        hand.Remove(handEnumerator.Current);
+                    }
+                } while (handEnumerator.MoveNext());
+
+                hand.Add(JackCard.JackMyers);
+            }
+        }
+
+        private static bool SpaceOnField(Field field) {
+            return field.Count < MAX_FIELD_SIZE;
+        }
+
+        private static bool InHand(Hand hand, Card card) {
+            return hand.Contains(card);
+        }
+
+        private static bool CardAtLocation(Field field, int fieldLocation) {
+            return field[fieldLocation] is Creature;
+        }
+
+        #endregion
+
+        #region Just Don't Look at This Mess
+
+        /**
+         * Apply an action with the two given position selections. 
+         * Depending on the locations, the action could include attack, or play.
+         * @param label_position_sideSelectionOne The first position selection
+         * @param label_position_sideSelectionTwo The second position selection
+         * @return The message concatenated from all applied actions
+ 
+        public String applyAction(String[] label_position_sideSelectionOne, String[] label_position_sideSelectionTwo) {
+            int position = Integer.parseInt(label_position_sideSelectionTwo[1]);
+            Card actionCard;
+            switch (label_position_sideSelectionOne[0]) {
+                case "field":
+                    actionCard = getCreatureAtPosition(CurrentPlayer().getPlayerSide(),
+                                                        Integer.parseInt(label_position_sideSelectionOne[1]));
+                    if (label_position_sideSelectionTwo[0].equals("player")) {
+                        // Attack the Player
+                        String message = (CurrentPlayer().attack((Creature)actionCard, getOpposingPlayer()));
+                        if (getOpposingPlayer().getHealthPoints() <= 0) {
+                            GameOver();
+                            return "";
+                        }
+                        return message;
+                    } else {
+                        int opponentsSide = getOpposingPlayer().getPlayerSide();
+                        int attackingCardPosition = Integer.parseInt(label_position_sideSelectionOne[1]);
+                        Creature creatureToAttack = getCreatureAtPosition(opponentsSide, position);
+                        // Attack the Creature
+                        String message = (CurrentPlayer().attack((Creature)actionCard, opponentsSide, position, Player.WITH_FATIGUE));
+                        if (message.equals(Player.FATIGUED)) {
+                            // No attack
+                        } else {
+                            if (!message.equals(Player.ATTACK_MISSED)) {
+                                message += ((Creature)actionCard).getType().modifierString(creatureToAttack.getType());
+                            }
+                            // Creature attacks back
+                            String attackBackMessage = (getOpposingPlayer().attack(creatureToAttack, CurrentPlayer().getPlayerSide(), attackingCardPosition, Player.NO_FATIGUE));
+                            if (!attackBackMessage.equals(Player.ATTACK_MISSED)) {
+                                attackBackMessage += (creatureToAttack).getType().modifierString(((Creature)actionCard).getType());
+                            }
+                            message += attackBackMessage;
+                        }
+                        return message;
+                    }
+                case "hand":
+                    actionCard = CurrentPlayer().getHandOfCards().get(Integer.parseInt(label_position_sideSelectionOne[1]));
+                    if ((getCurrentPlayerTurn() == 1 && label_position_sideSelectionTwo[2].equals("north")) ||
+                        getCurrentPlayerTurn() == 2 && label_position_sideSelectionTwo[2].equals("south")) {
+                        //Enhance opposing player's card
+                        return (CurrentPlayer().playCard(actionCard, getOpposingPlayer().getPlayerSide(), position));
+                    } else {
+                        // Play the Card or enhance own card
+                        return (CurrentPlayer().playCard(actionCard, CurrentPlayer().getPlayerSide(), position));
+                    }
+            }
+            return "error";
+        }
+
+        */
+
+        /**
+         * Update stats for the winning and losing player. 
+         * Add credits to winning Player, and reload the Players' Deck.
+         */
+        private void GameOver() {
+            // Update Stats
+            //UserProfile winningPlayer = CurrentPlayer().getProfile();
+            //UserProfile losingPlayer = getOpposingPlayer().getProfile();
+            //winningPlayer.addWin();
+            //winningPlayer.addCredits(WIN_CREDIT_AWARD);
+            //losingPlayer.addLoss();
+            // Reload Decks
+            //reloadDecks();
+            return;
+        }
+
+        #endregion
+
     }
 }

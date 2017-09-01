@@ -26,13 +26,19 @@ namespace PoliticalSimulatorCore.Model.Game_Model {
 
         #endregion
 
+        #region Constructor
+
         public Fatigue() {
             CurrentFatigueForTurn = START_FATIGUE;
             maxFatigueForTurn = START_FATIGUE;
         }
 
+        #endregion
+
+        #region Public Methods
+
         public bool UseFatigue(int fatigue) {
-            if(fatigue > CurrentFatigueForTurn) {
+            if (fatigue > CurrentFatigueForTurn) {
                 return false;
             } else {
                 CurrentFatigueForTurn -= fatigue;
@@ -40,15 +46,18 @@ namespace PoliticalSimulatorCore.Model.Game_Model {
             }
         }
 
-        public void NextTurn() {
-            IncrementMaxFatigue();
+        public bool TooFatigued(int fatigue) {
+            return fatigue > CurrentFatigueForTurn;
+        }
+
+        public void Increment() {
+            if (maxFatigueForTurn < MAX_FATIGUE_FOR_GAME) {
+                maxFatigueForTurn++;
+            }
             CurrentFatigueForTurn = maxFatigueForTurn;
         }
 
-        private void IncrementMaxFatigue() {
-            if(maxFatigueForTurn < MAX_FATIGUE_FOR_GAME) {
-                maxFatigueForTurn++;
-            }
-        }
+        #endregion
+
     }
 }
