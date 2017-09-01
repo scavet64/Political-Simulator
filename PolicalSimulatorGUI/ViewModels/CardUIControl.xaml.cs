@@ -36,6 +36,7 @@ namespace PoliticalSimulatorGUI
         {
             InitializeComponent();
             this.BorderThickness = new Thickness(1);
+            Card = card;
             DataContext = card;
         }
 

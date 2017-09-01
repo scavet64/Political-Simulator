@@ -15,6 +15,6 @@
             <StackPanel VerticalAlignment="Top" Height="240" HorizontalAlignment="Center" Orientation="Horizontal"/>
             <StackPanel x:Name="Player1Field" VerticalAlignment="Bottom" Height="240" HorizontalAlignment="Center" Orientation="Horizontal" />
         </Grid>
-        <StackPanel x:Name="BottomStack" VerticalAlignment="Bottom" Height="300" HorizontalAlignment="Center" />
+        <StackPanel x:Name="BottomStack" VerticalAlignment="Bottom" Height="300" HorizontalAlignment="Center" Orientation="Horizontal" />
     </Grid>
 </Page>

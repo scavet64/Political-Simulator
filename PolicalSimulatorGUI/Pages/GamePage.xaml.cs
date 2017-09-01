@@ -1,4 +1,5 @@
 ﻿using PoliticalSimulatorCore.Model;
+using PoliticalSimulatorGUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,10 @@ namespace PoliticalSimulatorGUI
         {
             InitializeComponent();
             //bottomStack = BottomStack.Children;
-            //BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetCardFromName("Thonking")));
+            BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetAllCards()[0]));
+            BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetAllCards()[0]));
+            BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetAllCards()[0]));
+            BottomStack.Children.Add(new CardUIControl(AllCards.getInstance().GetAllCards()[0]));
         }
 
         private void FieldGrid_DragEnter(object sender, DragEventArgs e)
@@ -45,7 +49,7 @@ namespace PoliticalSimulatorGUI
             // If the DataObject contains string data, extract it.
             if (e.Data.GetDataPresent("object"))
             {
-                CardUIControl dataString = (CardUIControl)e.Data.GetData("object");
+                CardUIControl cardUiControl = (CardUIControl)e.Data.GetData("object");
 
                 // Set Effects to notify the drag source what effect
                 // the drag-and-drop operation had.
@@ -57,8 +61,8 @@ namespace PoliticalSimulatorGUI
                 else
                 {
                     e.Effects = DragDropEffects.Move;
-                    ((StackPanel)e.Data.GetData("ParentElement")).Children.Remove(dataString);
-                    Player1Field.Children.Add(dataString);
+                    ((StackPanel)e.Data.GetData("ParentElement")).Children.Remove(cardUiControl);
+                    Player1Field.Children.Add(new FieldUIControl(cardUiControl.Card));
                 }
             }
             e.Handled = true;
