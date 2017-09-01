@@ -16,21 +16,25 @@
             <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="CardsCollectedDataGrid" Background="{StaticResource MajorBackground}" HeadersVisibility="Column" AutoGenerateColumns="False"
-                   Grid.Column="0"
+        <StackPanel Grid.Column="0">
+            <Label Foreground="white" HorizontalAlignment="Center"  BorderThickness="0,0,0,2" BorderBrush="White">Collected Cards</Label>
+            <DataGrid x:Name="CardsCollectedDataGrid" Background="{StaticResource MajorBackground}" HeadersVisibility="Column" AutoGenerateColumns="False"
+                   BorderBrush="Transparent" CellStyle="{StaticResource MyDataGridCell}"
                   SelectionChanged="CardsCollectedDataGrid_SelectionChanged" CanUserAddRows="false" CanUserDeleteRows="false" IsReadOnly="true">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Card Name" Binding="{Binding Name}" Width="*" SortDirection="Descending"></DataGridTextColumn>
-            </DataGrid.Columns>
-            <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridColumnHeader}">
-                    <Setter Property="Background" Value="{StaticResource MajorBackground}" />
-                    <Setter Property="Foreground" Value="White" />
-                    <Setter Property="HorizontalAlignment" Value="Center" />
-                    <Setter Property="FontWeight" Value="Bold" />
-                </Style>
-            </DataGrid.Resources>
-        </DataGrid>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Card Name" Binding="{Binding Name}" Width="*" SortDirection="Descending"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="{StaticResource MajorBackground}" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+        </StackPanel>
+        
 
         <Grid Grid.Column="1">
             <Border x:Name="CardUIBorder" HorizontalAlignment="Center" VerticalAlignment="Center"  />
@@ -39,21 +43,25 @@
                 <Button VerticalAlignment="Bottom" Style="{DynamicResource CustomButtonStyle}" HorizontalAlignment="Center" Click="Finish_Click">Finish Editing</Button>
             </StackPanel>
         </Grid>
-        
 
-        <DataGrid x:Name="CardsInDeckDataGrid" Background="{StaticResource MajorBackground}" HeadersVisibility="Column"  Grid.Column="2"
+
+        <StackPanel Grid.Column="2">
+            <Label Foreground="white" HorizontalAlignment="Center" BorderThickness="0,0,0,2" BorderBrush="White">Cards in Deck</Label>
+            <DataGrid x:Name="CardsInDeckDataGrid" Background="{StaticResource MajorBackground}" HeadersVisibility="Column"  BorderBrush="Transparent" CellStyle="{StaticResource MyDataGridCell}"
                   SelectionChanged="CardsCollectedDataGrid_SelectionChanged" CanUserAddRows="false" CanUserDeleteRows="false" IsReadOnly="true" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Card Name" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
-            </DataGrid.Columns>
-            <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridColumnHeader}">
-                    <Setter Property="Background" Value="{StaticResource MajorBackground}" />
-                    <Setter Property="Foreground" Value="White" />
-                    <Setter Property="HorizontalAlignment" Value="Center" />
-                    <Setter Property="FontWeight" Value="Bold" />
-                </Style>
-            </DataGrid.Resources>
-        </DataGrid>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Card Name" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="{StaticResource MajorBackground}" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+        </StackPanel>
+
     </Grid>
 </Page>

@@ -3,6 +3,8 @@
                     xmlns:local="clr-namespace:PoliticalSimulatorGUI">
 
     <SolidColorBrush x:Key="MajorBackground" Color="#0A1128"/>
+    <SolidColorBrush x:Key="MinorBackground" Color="#224870" />
+    <SolidColorBrush x:Key="AccentColor" Color="#4EA5D9" />
     <SolidColorBrush x:Key="FontColor" Color="#FFFFFF" />
 
     <!--Default Font-->
@@ -156,6 +158,20 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="SelectionBrush" Value="#1282A2"/>
             </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MyDataGridCell" TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+        <Setter Property="Background" Value="{StaticResource MinorBackground}"/>
+        <Setter Property="Foreground" Value="{StaticResource FontColor}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>
