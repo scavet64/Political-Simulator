@@ -17,8 +17,9 @@ namespace PoliticalSimulatorCore.Model
         private const int MAX_NUMBER_OF_CARD_IN_DECK = 2;
 
         //Variables
-        private List<Card> cardList = new List<Card>();
-        private String name;
+        public List<Card> cardList { get; set; } = new List<Card>();
+        public String name { get; set; }
+
         private static Random rng = new Random();
         //	private Stack<Card> deck = new Stack<Card>();
 
@@ -42,7 +43,7 @@ namespace PoliticalSimulatorCore.Model
 		/// </summary>
 		/// <returns>The card.</returns>
 		/// <param name="cardToAdd">Card to add.</param>
-		public String addCard(Card cardToAdd)
+		public bool addCard(Card cardToAdd)
         {
             if (Size() >= DECK_LIMIT)
             {
@@ -52,18 +53,18 @@ namespace PoliticalSimulatorCore.Model
             else if (cardList.Count == 0)
             {
                 cardList.Add(cardToAdd);
-                return cardToAdd.Name + " was added to the deck.";
+                return true;
             }
             else
             {
                 if (getNumberOfCardInDeck(cardToAdd) < MAX_NUMBER_OF_CARD_IN_DECK)
                 {
                     cardList.Add(cardToAdd);
-                    return cardToAdd.Name + " was added to the deck.";
+                    return true;
                 }
                 else
                 {
-                    return "You cannot have more than 2 of the same cards";
+                    return false;
                 }
             }
         }

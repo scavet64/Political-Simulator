@@ -7,6 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="211"
              Width="211" Height="300">
+
+    <!--Width="211" Height="300"-->
     <Grid>
         <!--<Image x:Name="Imageimage" Source="{Binding Path=ImageFilePath}" Margin="20,10,20,160" ></Image>-->
         <Image x:Name="Cardback" Source="{Binding Path=ImageFilePath}" MouseDown="Image_MouseDown" MouseEnter="Imageimage_MouseEnter" MouseLeave="Imageimage_MouseLeave" />

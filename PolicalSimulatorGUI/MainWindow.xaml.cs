@@ -1,4 +1,5 @@
 ﻿using PoliticalSimulatorCore.Model;
+using PoliticalSimulatorGUI.Pages;
 using System.Windows;
 
 namespace PoliticalSimulatorGUI
@@ -17,6 +18,7 @@ namespace PoliticalSimulatorGUI
         private LoginPage loginPage = new LoginPage();
         private HomePage homePage = new HomePage();
         private StorePage store = new StorePage();
+        private EditDeckPage editDeckPage = new EditDeckPage();
 
         public MainWindow()
         {
@@ -48,6 +50,7 @@ namespace PoliticalSimulatorGUI
                     break;
 
                 case MainDisplay.EditDeck:
+                    MainFrame.Content = editDeckPage;
                     break;
 
                 case MainDisplay.Game:

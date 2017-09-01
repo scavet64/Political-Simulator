@@ -95,6 +95,7 @@ namespace PoliticalSimulatorGUI
             {
                 foreach (Card card in MainController.CurrentUserProfile.Packs[0].CardsInPack)
                 {
+                    MainController.CurrentUserProfile.addCard(card);
                     WrapPanel.Children.Add(new CardUIControl(card));
                 }
                 MainController.CurrentUserProfile.Packs.RemoveAt(0);

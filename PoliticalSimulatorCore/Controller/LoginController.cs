@@ -14,8 +14,6 @@ namespace PoliticalSimulatorCore.Controller
     public static class LoginController
     {
 
-        public static UserProfile ActiveProfile { get; set; }
-
         /**
 	     * Load the profile with the given string. Throw a ProfileNotFoundException 
 	     * if the profile file could not be found.
@@ -82,7 +80,7 @@ namespace PoliticalSimulatorCore.Controller
         public static void createProfile(String name)
         {
             UserProfile newUser = new UserProfile(name);
-            ActiveProfile = newUser;
+            MainController.CurrentUserProfile = newUser;
             saveProfile(newUser);
         }
 
@@ -103,7 +101,7 @@ namespace PoliticalSimulatorCore.Controller
          */
         public static void saveActiveProfile()
         {
-            saveProfile(ActiveProfile);
+            saveProfile(MainController.CurrentUserProfile);
         }
     }
 }

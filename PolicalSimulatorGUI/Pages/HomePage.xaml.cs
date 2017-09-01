@@ -1,4 +1,5 @@
-﻿using PoliticalSimulatorCore.Model;
+﻿using PoliticalSimulatorCore.Controller;
+using PoliticalSimulatorCore.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,17 +40,24 @@ namespace PoliticalSimulatorGUI
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            LoginController.saveActiveProfile();
+            Environment.Exit(0);
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-
+            LoginController.saveActiveProfile();
+            MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.LoginPage);
         }
 
         private void StoreButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.Store);
+        }
+
+        private void EditDeckButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.GetInstance().SwapPage(MainWindow.MainDisplay.EditDeck);
         }
     }
 }

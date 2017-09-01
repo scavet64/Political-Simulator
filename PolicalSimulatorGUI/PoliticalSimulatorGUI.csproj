@@ -54,11 +54,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\EditDeckPage.xaml.cs">
+      <DependentUpon>EditDeckPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AlignableWrapPanel.cs" />
     <Compile Include="Pages\StorePage.xaml.cs">
       <DependentUpon>StorePage.xaml</DependentUpon>
     </Compile>
-    <Page Include="ViewModels\Card.xaml">
+    <Page Include="Pages\EditDeckPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewModels\CardUIControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,8 +89,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\Card.xaml.cs">
-      <DependentUpon>Card.xaml</DependentUpon>
+    <Compile Include="ViewModels\CardUIControl.xaml.cs">
+      <DependentUpon>CardUIControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
