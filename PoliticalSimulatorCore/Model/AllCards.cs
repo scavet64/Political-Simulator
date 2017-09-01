@@ -191,7 +191,7 @@ namespace PoliticalSimulatorCore.Model
             foreach (Card card in allCards)
             {
                 if (card is Creature){
-                if (((Creature)card) is IEnhanceable){
+                if (((Creature)card) is RareCreature){
                     rareCards.Add(card);
                 }
             }

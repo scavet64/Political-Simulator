@@ -42,8 +42,7 @@ namespace PoliticalSimulatorGUI
 
         public void NotifyPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public string NumberOfPacksLabel
@@ -77,9 +76,10 @@ namespace PoliticalSimulatorGUI
                 Button senderButton = (Button)sender;
                 ButtonTagObject extract = new ButtonTagObject((string)senderButton.Tag);
 
-                if (MainController.CurrentUserProfile.Credits < extract.TotalCost)
+                if (MainController.CurrentUserProfile.Credits > extract.TotalCost)
                 {
                     MainController.CurrentUserProfile.purchasePacks(extract.NumberOfPacks, extract.TotalCost);
+                    UpdateGUI();
                 }
                 else
                 {
@@ -90,7 +90,15 @@ namespace PoliticalSimulatorGUI
 
         private void OpenPackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            WrapPanel.Children.Clear();
+            if(MainController.CurrentUserProfile.Packs.Count > 0)
+            {
+                foreach (Card card in MainController.CurrentUserProfile.Packs[0].CardsInPack)
+                {
+                    WrapPanel.Children.Add(new CardUIControl(card));
+                }
+                MainController.CurrentUserProfile.Packs.RemoveAt(0);
+            }
         }
 
         private void LeaveStoreButton_Click(object sender, RoutedEventArgs e)
