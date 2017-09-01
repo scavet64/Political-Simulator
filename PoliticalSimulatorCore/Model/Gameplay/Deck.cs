@@ -44,7 +44,7 @@ namespace PoliticalSimulatorCore.Model
 		/// <param name="cardToAdd">Card to add.</param>
 		public String addCard(Card cardToAdd)
         {
-            if (getSize() >= DECK_LIMIT)
+            if (Size() >= DECK_LIMIT)
             {
                 throw new DeckFullException();
                 //return "The deck is full. Remove a card, then try to add a new card.";
@@ -139,9 +139,13 @@ namespace PoliticalSimulatorCore.Model
         /// Gets the size.
         /// </summary>
         /// <returns>The size.</returns>
-        public int getSize()
+        public int Size()
         {
             return cardList.Count;
+        }
+
+        public bool IsEmpty() {
+            return cardList.Count <= 0;
         }
 
         /// <summary>

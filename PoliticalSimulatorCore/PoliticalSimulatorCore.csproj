@@ -40,20 +40,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\GameController.cs" />
+    <Compile Include="Controller\LogController.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="CustomExceptions\DeckFullException.cs" />
     <Compile Include="CustomExceptions\ImageNotFoundException.cs" />
     <Compile Include="CustomExceptions\ProfileNotFoundException.cs" />
-    <Compile Include="Model\AllCards.cs" />
-    <Compile Include="Model\Card.cs" />
-    <Compile Include="Model\Creature.cs" />
-    <Compile Include="Model\Deck.cs" />
-    <Compile Include="Model\Enhancement.cs" />
-    <Compile Include="Model\IEnhanceable.cs" />
-    <Compile Include="Model\JackCard.cs" />
+    <Compile Include="Model\Card\AllCards.cs" />
+    <Compile Include="Model\Card\Card.cs" />
+    <Compile Include="Model\Card\Creature.cs" />
+    <Compile Include="Model\Gameplay\Deck.cs" />
+    <Compile Include="Model\Card\Enhancement.cs" />
+    <Compile Include="Model\Gameplay\Fatigue.cs" />
+    <Compile Include="Model\Gameplay\Field.cs" />
+    <Compile Include="Model\Gameplay\Hand.cs" />
+    <Compile Include="Model\Card\IEnhanceable.cs" />
+    <Compile Include="Model\Card\JackCard.cs" />
     <Compile Include="Model\Pack.cs" />
-    <Compile Include="Model\RareCreature.cs" />
+    <Compile Include="Model\Gameplay\Player.cs" />
+    <Compile Include="Model\Card\RareCreature.cs" />
     <Compile Include="Model\Type.cs" />
     <Compile Include="Model\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
