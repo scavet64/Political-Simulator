@@ -19,8 +19,8 @@
         <StackPanel Grid.Column="0">
             <Label Foreground="white" HorizontalAlignment="Center"  BorderThickness="0,0,0,2" BorderBrush="White">Collected Cards</Label>
             <DataGrid x:Name="CardsCollectedDataGrid" Background="{StaticResource MajorBackground}" HeadersVisibility="Column" AutoGenerateColumns="False"
-                   BorderBrush="Transparent" CellStyle="{StaticResource MyDataGridCell}"
-                  SelectionChanged="CardsCollectedDataGrid_SelectionChanged" CanUserAddRows="false" CanUserDeleteRows="false" IsReadOnly="true">
+                   BorderBrush="Transparent" CellStyle="{StaticResource MyDataGridCell}" SelectionChanged="CardsCollectedDataGrid_SelectionChanged" 
+                      CanUserAddRows="false" CanUserDeleteRows="false" IsReadOnly="true" CanUserSortColumns="False" SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Card Name" Binding="{Binding Name}" Width="*" SortDirection="Descending"></DataGridTextColumn>
                 </DataGrid.Columns>
