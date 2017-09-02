@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:PoliticalSimulatorGUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="211"
-             Width="211" Height="300">
+             Width="211" Height="300" AllowDrop="True">
 
     <!--Width="211" Height="300"-->
     <Grid>
         <!--<Image x:Name="Imageimage" Source="{Binding Path=ImageFilePath}" Margin="20,10,20,160" ></Image>-->
-        <Image x:Name="Cardback" Source="{Binding Path=ImageFilePath}" MouseDown="Image_MouseDown" MouseEnter="Imageimage_MouseEnter" MouseLeave="Imageimage_MouseLeave" />
+        <Image x:Name="Cardback" Source="{Binding Path=ImageFilePath}" MouseDown="Cardback_MouseDown" MouseEnter="Cardback_MouseEnter" MouseLeave="Cardback_MouseLeave" />
         <!--<Image x:Name="Cardback" Source="CardPieces\cardTemplate.png" MouseDown="Image_MouseDown" MouseEnter="Imageimage_MouseEnter" MouseLeave="Imageimage_MouseLeave" />-->
         <TextBlock Text="{Binding Path=PlayFatigueValue}" Foreground="White" FontFamily="./#OPTIBelwe" FontSize="18" TextAlignment="Center" Margin="8,18,181,260" />
         <TextBlock Text="{Binding Path=ChanceToHit}" Foreground="White" FontFamily="./#OPTIBelwe" FontSize="18" TextAlignment="Center" Margin="178,10,8,270" />

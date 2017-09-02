@@ -9,7 +9,7 @@ namespace PoliticalSimulatorCore.Model.Game_Model {
 
         #region Constants
 
-        private const int START_FATIGUE = 0;
+        private const int START_FATIGUE = 5;
         private const int MAX_FATIGUE_FOR_GAME = 10;
 
         #endregion

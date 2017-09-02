@@ -10,7 +10,7 @@
       Title="GamePage"
       Background="{StaticResource MajorBackground}">
 
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="MainGrid" AllowDrop="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -34,17 +34,17 @@
             <Image x:Name="playerTwoDeck" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="211"
                Source="/Images/CardImages/CardBack.png"></Image>
 
-            <Grid x:Name="playerTwoHand" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ShowGridLines="True">
+            <StackPanel x:Name="playerTwoHand" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal">
 
-            </Grid>
+            </StackPanel>
 
             <Border Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="240" Width="240" BorderThickness="2" BorderBrush="White">
                 <Image x:Name="PlayerTwoIcon" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="240" Width="240"></Image>
             </Border>
 
-            <Grid x:Name="playerTwoField" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" ShowGridLines="True">
+            <StackPanel x:Name="playerTwoField" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal" Drop="Field_Drop" DragEnter="Field_DragEnter" AllowDrop="True" Background="#00000000">
 
-            </Grid>
+            </StackPanel>
         </Grid>
 
         <Grid x:Name="playerOneSide" Grid.Row="1">
@@ -61,17 +61,17 @@
             <Image x:Name="playerOneDeck" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="211"
                Source="/Images/CardImages/CardBack.png"></Image>
 
-            <Grid x:Name="playerOneHand" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ShowGridLines="True">
+            <StackPanel x:Name="playerOneHand" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal">
 
-            </Grid>
+            </StackPanel>
 
             <Border Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="240" Width="240" BorderThickness="2" BorderBrush="White">
                 <Image x:Name="PlayerOneIcon" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="240" Width="240"></Image>
             </Border>
 
-            <Grid x:Name="playerOneField" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" ShowGridLines="True">
+            <StackPanel x:Name="playerOneField" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal" DragEnter="Field_DragEnter" Drop="Field_Drop" AllowDrop="True" Background="#00000000">
 
-            </Grid>
+            </StackPanel>
         </Grid>
 
     </Grid>

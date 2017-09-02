@@ -87,16 +87,20 @@ namespace PoliticalSimulatorCore.Controller {
             }
         }
 
-        public static bool PlayCard(Player player, Creature card, int fieldLocation) {
+        public static bool PlayCard(Player player, Card card) {
             if (!InHand(player.Hand, card)) {
                 return false;
             }
 
-            if (SpaceOnField(player.Field)) {
-                if (player.PlayerFatigue.UseFatigue(card.PlayFatigueValue)) {
-                    player.Hand.Remove(card);
-                    player.Field[fieldLocation] = card;
-                    return true;
+            if(card is Creature) {
+                if (SpaceOnField(player.Field)) {
+                    if (player.PlayerFatigue.UseFatigue(card.PlayFatigueValue)) {
+                        player.Hand.Remove(card);
+                        player.Field.Add(card as Creature);
+                        return true;
+                    } else {
+                        return false;
+                    }
                 } else {
                     return false;
                 }
@@ -105,36 +109,39 @@ namespace PoliticalSimulatorCore.Controller {
             }
         }
 
-        public static bool PlayCard(Player player, Enhancement enhancement, Field field, int fieldLocation) {
-            if (!InHand(player.Hand, enhancement)) {
+        public static bool PlayCard(Player player, Card enhancementCard, Card cardEnhanced) {
+            if (!InHand(player.Hand, enhancementCard)) {
                 return false;
             }
 
-            if(player.PlayerFatigue.TooFatigued(enhancement.PlayFatigueValue)) {
+            if (player.PlayerFatigue.TooFatigued(enhancementCard.PlayFatigueValue)) {
                 return false;
             }
 
-            if (CardAtLocation(field, fieldLocation)) {
+            if (enhancementCard is Enhancement) {
 
-                if (field[fieldLocation] is IEnhanceable) {
-                    Creature creatureToModify = field[fieldLocation];
+                Enhancement enhancement = enhancementCard as Enhancement;
+
+                if (cardEnhanced is IEnhanceable) {
+
+                    Creature creatureEnhanced = cardEnhanced as Creature;
 
                     switch (enhancement.getStat()) {
                         case Enhancement.ATTACK:
-                            creatureToModify.AttackValue += enhancement.getModValue();
+                            creatureEnhanced.AttackValue += enhancement.getModValue();
                             break;
                         case Enhancement.HEALTH:
-                            creatureToModify.HealthValue += enhancement.getModValue();
+                            creatureEnhanced.HealthValue += enhancement.getModValue();
                             break;
                         case Enhancement.FATIGUE:
-                            if ((creatureToModify.AttackFatigueValue + enhancement.getModValue()) > 0) {
-                                creatureToModify.AttackFatigueValue += enhancement.getModValue();
+                            if ((creatureEnhanced.AttackFatigueValue + enhancement.getModValue()) > 0) {
+                                creatureEnhanced.AttackFatigueValue += enhancement.getModValue();
                             } else {
                                 return false;
                             }
                             break;
                         case Enhancement.CHANCE_TO_ATTACK:
-                            creatureToModify.ChanceToHit += enhancement.getModValue();
+                            creatureEnhanced.ChanceToHit += enhancement.getModValue();
                             break;
                     }
 
@@ -142,37 +149,33 @@ namespace PoliticalSimulatorCore.Controller {
                     player.Hand.Remove(enhancement);
                     return true;
 
-                }else {
+                } else {
                     return false;
                 }
+
             } else {
                 return false;
             }
         }
 
-        public static bool Attack(Player player, Creature attackingCreature, Field field, int fieldLocation) {
-            if (CardAtLocation(field, fieldLocation)) {
-                if (player.PlayerFatigue.UseFatigue(attackingCreature.AttackFatigueValue)) {
-                    if (AttackMissed(attackingCreature.ChanceToHit)) {
+        public static bool Attack(Player player, Creature attackingCreature, Creature creatureAttacked, Field fieldAttacked) {
+
+            if (player.PlayerFatigue.UseFatigue(attackingCreature.AttackFatigueValue)) {
+                if (AttackMissed(attackingCreature.ChanceToHit)) {
+                    return false;
+                } else {
+                    // Apply damage to attacked card
+                    int attackValue = attackingCreature.AttackValue + attackingCreature.CreatureType.applyModifier(creatureAttacked.CreatureType);
+                    creatureAttacked.HealthValue -= attackValue;
+
+                    // Check if the creature died
+                    if (creatureAttacked.HealthValue <= 0) {
+                        //The creature is dead therefore it is removed from its location
+                        fieldAttacked.Remove(creatureAttacked);
                         return true;
                     } else {
-                        Creature creatureAttacked = field[fieldLocation];
-
-                        // Apply damage to attacked card
-                        int attackValue = attackingCreature.AttackValue + attackingCreature.CreatureType.applyModifier(creatureAttacked.CreatureType);
-                        creatureAttacked.HealthValue -= attackValue;
-
-                        // Check if the creature died
-                        if (creatureAttacked.HealthValue <= 0) {
-                            //The creature is dead therefore it is removed from its location
-                            field.Remove(creatureAttacked);
-                            return true;
-                        } else {
-                            return true;
-                        }
+                        return false;
                     }
-                } else {
-                    return false;
                 }
             } else {
                 return false;

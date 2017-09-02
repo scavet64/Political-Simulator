@@ -22,10 +22,9 @@ namespace PoliticalSimulatorGUI
     public partial class CardUIControl : UserControl
     {
 
-        private bool hasBeenPlayed = false;
+        public const string DRAG_NAME = "CardUIControl";
 
         private Card card;
-
         public Card Card
         {
             get { return card; }
@@ -35,38 +34,26 @@ namespace PoliticalSimulatorGUI
         public CardUIControl(Card card)
         {
             InitializeComponent();
-            this.BorderThickness = new Thickness(1);
+            BorderThickness = new Thickness(1);
             Card = card;
             DataContext = card;
         }
 
-        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Cardback_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DataObject data = new DataObject();
-            data.SetData("object", this);
-            data.SetData("ParentElement", this.Parent);
+            data.SetData(DRAG_NAME, this);
             DragDropEffects effects = DragDrop.DoDragDrop(this, data, DragDropEffects.Move);
-            if(effects == DragDropEffects.Move)
-            {
-                hasBeenPlayed = true;
-            }
         }
 
-        private void Imageimage_MouseEnter(object sender, MouseEventArgs e)
+        private void Cardback_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (!hasBeenPlayed)
-            {
-                this.BorderBrush = Brushes.Aqua;
-            }
-            
+            BorderBrush = Brushes.Aqua;        
         }
 
-        private void Imageimage_MouseLeave(object sender, MouseEventArgs e)
+        private void Cardback_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (!hasBeenPlayed)
-            {
-                this.BorderBrush = Brushes.Transparent;
-            }
+            BorderBrush = Brushes.Transparent;
         }
     }
 }
